@@ -1,0 +1,65 @@
+.text-orange-600 {
+    --text-opacity: 1;
+    color: #d03801;
+    color: rgba(208,56,1,var(--text-opacity));
+}
+
+.bg-orange-100 {
+    --bg-opacity: 1;
+    background-color: #feecdc;
+    background-color: rgba(254,236,220,var(--bg-opacity));
+}
+
+.text-blue-600 {
+    --text-opacity: 1;
+    color: #1c64f2;
+    color: rgba(28,100,242,var(--text-opacity));
+}
+
+.bg-blue-100 {
+    --bg-opacity: 1;
+    background-color: #e1effe;
+    background-color: rgba(225,239,254,var(--bg-opacity));
+}
+
+@media (min-width: 1280px)
+{
+    .xl\:grid-cols-4 {
+        grid-template-columns: repeat(4,minmax(0,1fr));
+    }
+}
+@media (min-width: 768px)
+{
+    .md\:grid-cols-2 {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+    }
+}
+
+.filter-bar {
+    margin-bottom: 10px;
+    background: #f3f4f6;
+    padding: 10px 15px;
+    border-radius: 5px;
+    align-items: center;
+    color: #585858;
+    font-size: .875rem;
+    input {
+        border-radius: 3px;
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
+.filter-btn {
+    border-radius: 3px;
+}
+
+
+.ngx-pagination .current {
+    padding: 0.1875rem 0.625rem;
+    background: #0e9f6e;
+    color: #fefefe;
+    cursor: default;
+    border-radius: 5px;
+}

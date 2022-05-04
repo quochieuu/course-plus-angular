@@ -1,0 +1,221 @@
+<h1 class="my-6 text-lg font-bold text-gray-700 dark:text-gray-300">Thêm câu hỏi trắc nghiệm mới</h1>
+
+<div class="container dcontainer">
+
+  <form [formGroup]="createForm" (ngSubmit)="onSubmit()" class="hct-form">
+    <div class="flex">
+      <div class="w-2/3">
+        <div class="justify-content-center">
+          <div class="col-md-4i">
+
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2">Nội dung</label>
+              <angular-editor formControlName="content" [config]="editorConfig"></angular-editor>
+            </div>
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2">Các câu trả lời</label>
+              <div class="answer-group">
+                <div class="answer-correct-group">
+                  <input type="radio" name="answer_choice"  formControlName="answer_correct1" [value]="true" >
+                  <label for="">Đáp án đúng</label>
+                </div>
+                <textarea class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                formControlName="answer1" placeholder="Phương án 1"></textarea>
+                <div class="answer-action-group">
+                  <a href="#">
+                    <i class="bx bx-x"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="answer-group">
+                <div class="answer-correct-group">
+                  <input type="radio" name="answer_choice"  formControlName="answer_correct2" [value]="true"  >
+                  <label for="">Đáp án đúng</label>
+                </div>
+                <textarea class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                formControlName="answer2" placeholder="Phương án 2"></textarea>
+                <div class="answer-action-group">
+                  <a href="#">
+                    <i class="bx bx-x"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="answer-group">
+                <div class="answer-correct-group">
+                  <input type="radio" name="answer_choice"  formControlName="answer_correct3" [value]="true"  >
+                  <label for="">Đáp án đúng</label>
+                </div>
+                <textarea class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                formControlName="answer3" placeholder="Phương án 3"></textarea>
+                <div class="answer-action-group">
+                  <a href="#">
+                    <i class="bx bx-x"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="answer-group">
+                <div class="answer-correct-group">
+                  <input type="radio" name="answer_choice"  formControlName="answer_correct4" [value]="true"  >
+                  <label for="">Đáp án đúng</label>
+                </div>
+                <textarea class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                formControlName="answer4" placeholder="Phương án 4"></textarea>
+                <div class="answer-action-group">
+                  <a href="#" class="del">
+                    <i class="bx bx-x"></i>
+                  </a>
+                </div>
+              </div>
+
+              <!-- new section group  -->
+              <div class="answer-group" *ngIf="showTab5 == 5">
+                <div class="answer-correct-group">
+                  <input type="radio" name="answer_choice"  formControlName="answer_correct5" [value]="true"  >
+                  <label for="">Đáp án đúng</label>
+                </div>
+                <textarea class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                formControlName="answer5" placeholder="Phương án 5"></textarea>
+                <div class="answer-action-group">
+                  <a href="#" class="del">
+                    <i class="bx bx-x"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="add-new-action">
+                <a (click)="showTab_5()" *ngIf="showTab5 != 5" class="new-one">
+                  <i class="bx bx-plus mr-2"></i>Thêm phương án 5
+                </a>
+              </div>
+              <!-- (end) new section group  -->
+
+              <!-- new section group  -->
+              <div class="answer-group" *ngIf="showTab6 == 6">
+                <div class="answer-correct-group">
+                  <input type="radio" name="answer_choice"  formControlName="answer_correct6" [value]="true"  >
+                  <label for="">Đáp án đúng</label>
+                </div>
+                <textarea class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                formControlName="answer6" placeholder="Phương án 6"></textarea>
+                <div class="answer-action-group">
+                  <a href="#" class="del">
+                    <i class="bx bx-x"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="add-new-action">
+                <a (click)="showTab_6()" *ngIf="showTab5 == 5 && showTab6 != 6" class="new-one">
+                  <i class="bx bx-plus mr-2"></i>Thêm phương án 6
+                </a>
+              </div>
+              <!-- (end) new section group  -->
+
+              <!-- new section group  -->
+              <div class="answer-group" *ngIf="showTab7 == 7">
+                <div class="answer-correct-group">
+                  <input type="radio" name="answer_choice"  formControlName="answer_correct8" [value]="true"  >
+                  <label for="">Đáp án đúng</label>
+                </div>
+                <textarea class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                formControlName="answer7" placeholder="Phương án 7"></textarea>
+                <div class="answer-action-group">
+                  <a href="#" class="del">
+                    <i class="bx bx-x"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="add-new-action">
+                <a (click)="showTab_7()" *ngIf="showTab6 == 6 && showTab7 != 7" class="new-one">
+                  <i class="bx bx-plus mr-2"></i>Thêm phương án 7
+                </a>
+              </div>
+              <!-- (end) new section group  -->
+
+              <!-- new section group  -->
+              <div class="answer-group" *ngIf="showTab8 == 8">
+                <div class="answer-correct-group">
+                  <input type="radio" name="answer_choice"  formControlName="answer_correct9" [value]="true"  >
+                  <label for="">Đáp án đúng</label>
+                </div>
+                <textarea class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                formControlName="answer8" placeholder="Phương án 8"></textarea>
+                <div class="answer-action-group">
+                  <a href="#" class="del">
+                    <i class="bx bx-x"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="add-new-action">
+                <a (click)="showTab_8()" *ngIf="showTab7 == 7 && showTab8 != 8" class="new-one">
+                  <i class="bx bx-plus mr-2"></i>Thêm phương án 8
+                </a>
+              </div>
+              <!-- (end) new section group  -->
+
+              <!-- new section group  -->
+              <div class="answer-group" *ngIf="showTab9 == 9">
+                <div class="answer-correct-group">
+                  <input type="radio" name="answer_choice"  formControlName="answer_correct10" [value]="true"  >
+                  <label for="">Đáp án đúng</label>
+                </div>
+                <textarea class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                formControlName="answer9" placeholder="Phương án 9"></textarea>
+                <div class="answer-action-group">
+                  <a href="#" class="del">
+                    <i class="bx bx-x"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="add-new-action">
+                <a (click)="showTab_9()" *ngIf="showTab8 == 8 && showTab9 != 9" class="new-one">
+                  <i class="bx bx-plus mr-2"></i>Thêm phương án 9
+                </a>
+              </div>
+              <!-- (end) new section group  -->
+
+              <!-- new section group  -->
+              <div class="answer-group" *ngIf="showTab10 == 10">
+                <div class="answer-correct-group">
+                  <input type="radio" name="answer_choice"  formControlName="answer_correct1" [value]="true"  >
+                  <label for="">Đáp án đúng</label>
+                </div>
+                <textarea class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                formControlName="answer10" placeholder="Phương án 10"></textarea>
+                <div class="answer-action-group">
+                  <a href="#" class="del">
+                    <i class="bx bx-x"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="add-new-action">
+                <a (click)="showTab_10()" *ngIf="showTab9 == 9 && showTab10 != 10" class="new-one">
+                  <i class="bx bx-plus mr-2"></i>Thêm phương án 10
+                </a>
+              </div>
+              <!-- (end) new section group  -->
+
+
+
+
+            </div>
+            <div class="mb-4">
+              <button
+                class="rounded-md inline-block align-baseline text-sm text-white bg-green-500 hover:text-blue-800 px-4 py-1"
+                type="submit">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="w-1/3 ml-5">
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2">Số điểm cho câu hỏi này</label>
+          <input
+            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            type="text" formControlName="score" required>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<a routerLink="/admin/quiz/index"
+  class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">Back to list</a>

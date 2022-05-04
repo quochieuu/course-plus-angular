@@ -1,0 +1,32 @@
+<div class="main_content">
+  <div class="container">
+<h1 class="my-6 text-lg font-bold text-gray-700 dark:text-gray-300">Cập nhật câu hỏi</h1>
+
+<div class="w-100">
+    <div class="row">
+    <div class="col-md-12">
+        <form (ngSubmit)="onSubmit()" class="hct-form">
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">Tiêu đề</label>
+            <input
+              class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              type="text" [(ngModel)]="item.name" name="name" required placeholder="Nhập tiêu đề câu hỏi...">
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">Nội dung</label>
+            <!-- <input
+              class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              type="text" formControlName="content" required> -->
+              <angular-editor  [(ngModel)]="item.content" name="content" [config]="editorConfig"></angular-editor>
+          </div>
+          <div class="form-group">
+            <button class="rounded-md inline-block align-baseline text-sm text-white bg-green-500 hover:text-blue-800 px-4 py-1" type="submit">Update</button>
+          </div>
+        </form>
+    </div>
+  </div>
+  </div>
+
+  <a routerLink="/forum/my-questions" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">Back to list</a>
+</div>
+</div>

@@ -1,0 +1,89 @@
+<div class="uk-sticky-placeholder" style="height: 72px; margin: 0px;"></div>
+<!-- Main Contents -->
+<div class="main_content">
+  <div style="background-color: #7798f9; width: 70%; height: 38px; margin-top: -134px; float: right;"></div>
+  <div class="container">
+
+      <div class="max-w-3xl mx-auto">
+        <h3 class="flex font-semibold items-center justify-between text-base mb-3" style="height: 30px; padding: 1.25rem;">
+          Đơn Hàng của bạn
+        </h3>
+        <div *ngFor="let item of orders; let i = index" class="wrap-order-item">
+          <div class="rounded-md mt-1">
+            <h3 class="border-b flex font-semibold items-center justify-between px-7 py-4 text-base" style="height: 30px; padding: 1.25rem;">
+              <div>
+                <a (click)="tabToggle(i+10001)" *ngIf="showTab != i+10001" style="font-weight: 400; cursor: pointer;"><i class="fa fa-chevron-down mr-2"></i>Hiện SP  •  </a>
+                <a (click)="tabCancel()" *ngIf="showTab == i+10001" style="font-weight: 400;cursor: pointer;"><i class="fa fa-chevron-up mr-2"></i>Ẩn SP  •   </a>
+                Đặt Ngày <span >{{ item.orderDate | date: 'dd/MM/yyyy' : 'UTC' }}</span>
+              </div>
+              <div *ngIf="item.orderStatus == 0">
+                <span>Chờ thanh toán</span>
+                <span> • </span>
+                <a (click)="cancelOrder(item.orderId)" style="font-weight: 400; cursor: pointer;">Huỷ</a>
+                <span> • </span>
+                <a (click)="createPayment(item.orderId)" class="text-success" style="cursor: pointer;">Thanh Toán</a>
+              </div>
+              <div *ngIf="item.orderStatus == 1">
+                Đã Huỷ
+                <span> • </span>
+                <a (click)="deleteOrder(item.orderId)" class="text-danger" style=" cursor: pointer;">Xoá đơn hàng</a>
+              </div>
+              <div *ngIf="item.orderStatus == 2">
+                Thanh toán thành công <span> • </span>
+                <a (click)="deleteOrder(item.orderId)" class="text-danger" style=" cursor: pointer;">Xoá đơn hàng</a>
+              </div>
+              <div *ngIf="item.orderStatus == 3">
+                Thanh toán thất bại
+              </div>
+            </h3>
+
+            <div class="lg:p-8 p-3" *ngFor="let order of item.detail">
+              <div class="divide-y" *ngIf="showTab == i+10001">
+                <div class="flex items-start space-x-6 relative px-6">
+
+                    <div class="h-20 overflow-hidden relative rounded-md w-32">
+                        <img src="{{baseUrl}}/courses/images/{{order.course.urlImage }}" alt="{{ order.course.name }}" class="absolute w-full h-full inset-0 object-cover">
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <a routerLink="/" class="md:text-lg font-semibold line-clamp-2 mb-2">{{ order.course.name }}</a>
+                        <a routerLink="/" class="font-medium block text-sm"> Course Plus Academy </a>
+                        <!-- <div class="flex items-center mt-7 space-x-2 text-sm font-medium">
+                            <div class="flex items-center"> 11/06/2000 </div>
+                        </div> -->
+                    </div>
+                    <h5 class="font-semibold text-black text-xl">{{ order.course.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'}) }}</h5>
+                    <h5 class="absolute bottom-9 font-semibold right-4 text-blue text-blue-500">
+                      <!-- <a (click)="removeItemFromCart(item.cartItemId)" style="cursor: pointer;">Xoá</a> -->
+                    </h5>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <div class="border-t mt-2 pt-6 space-y-6">
+
+          <div class="flex justify-between px-6">
+              <div class="flex-1 min-w-0">
+                  <h1 class="text-lg font-medium"> Tổng cộng </h1>
+                  <p> Đã bao gồm <strong>VAT</strong> </p>
+              </div>
+              <h5 class="font-semibold text-black text-xl"> {{ item.totalPrice | number }} đ </h5>
+          </div>
+      </div>
+      </div>
+      </div>
+  </div>
+
+  <!-- footer -->
+  <div class="lg:mt-28 mt-10 mb-7 px-12 border-t pt-7">
+      <div class="flex flex-col items-center justify-between lg:flex-row max-w-6xl mx-auto lg:space-y-0 space-y-3">
+          <p class="capitalize font-medium">© copyright 2021 Courseplus</p>
+          <div class="lg:flex space-x-4 text-gray-700 capitalize hidden">
+              <a href="#"> About</a>
+              <a href="#"> Help</a>
+              <a href="#"> Terms</a>
+              <a href="#"> Privacy</a>
+          </div>
+      </div>
+  </div>
+</div>

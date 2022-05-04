@@ -1,0 +1,25 @@
+@media (min-width: 768px) {
+    .md\:w-1\/2 {
+        width: 50%;
+    }
+    .md\:h-auto {
+        height: auto;
+    }
+    .md\:flex-row {
+        flex-direction: row;
+    }
+}
+img.btn-loading {
+  display: inline-block;
+  width: 28px;
+}
+div.err, span.err {
+  color: #d40202;
+  font-size: .9em;
+  display: block;
+  font-weight: 500;
+}
+
+input.err {
+  border: 1px solid #ff000057!important;
+}

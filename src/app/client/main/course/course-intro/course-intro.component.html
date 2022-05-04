@@ -1,0 +1,206 @@
+
+
+<!-- Main Contents -->
+<div class="main_content">
+
+  <!-- modal called  -->
+  <ng-template #mymodal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Video giới thiệu khoá học</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <form>
+    <div class="modal-body">
+      <div class="embed-video">
+        <iframe [src]="urlSafe" frameborder="0" allowfullscreen uk-responsive></iframe>
+    </div>
+    </div>
+  </form>
+  </ng-template>
+
+
+  <!-- end modal called  -->
+    <!-- course preview details -->
+    <div class="bg-gradient-to-tr from-pink-500 to-red-500 text-white cint">
+        <div class="container p-0">
+            <div class="lg:flex items-center lg:space-x-12 lg:py-10 lg:px-8 p-4">
+              <lib-toastify-toast-container [autoClose]="3000"
+              [iconLibrary]="'font-awesome'"
+              ></lib-toastify-toast-container>
+                <div class="lg:w-4/12">
+                    <div class="w-full h-40 overflow-hidden rounded-lg relative lg:mb-0 mb-4">
+                        <img src="{{baseUrl}}/courses/images/{{course.urlImage}}" alt="{{ course.name }}" class="w-full h-full absolute inset-0 object-cover">
+                        <a (click)="open(mymodal)" class="uk-position-center">
+                            <img src="./../../../../../assets/client/assets/images/icon-play.svg" class="w-16 h-16" alt="{{ course.name }}">
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:w-8/12">
+
+                    <h1 class="lg:leading-10 lg:text-2xl text-white text-xl leading-8 font-semibold">{{ course.name }}</h1>
+                    <p class="line-clamp-2 mt-3 md:block hidden lmline"> {{ course.description }} </p>
+
+                    <ul class="flex text-gray-100 gap-4 mt-4 mb-1">
+                        <li class="flex items-center">
+                            <span class="avg bg-yellow-500 mr-2 px-2 rounded text-white font-semiold" *ngIf="course.price > 0"> {{ course.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'}) }} </span>
+                            <span class="avg bg-yellow-500 mr-2 px-2 rounded text-white font-semiold" *ngIf="course.price == 0"> Miễn Phí </span>
+                            <!-- <div class="star-rating text-yellow-200">
+                                <i name="star"></i> <i name="star"></i>
+                                <i name="star"></i> <i name="star"></i>
+                                <i name="star-half"></i>
+                            </div> -->
+                        </li>
+                        <li *ngIf="course.originalPrice > 1"> <i name="people-circle-outline" ></i> {{ course.originalPrice.toLocaleString('it-IT', {style : 'currency', currency : 'VND'}) }} </li>
+                    </ul>
+                    <ul class="lg:flex text-gray-100">
+                        <li> Tác giả: <a href="#" class="text-white fond-bold hover:underline hover:text-white"> <b>Course Plus Academy</b> </a> </li>
+                        <span class="lg:block hidden mx-3 text-2xl">·</span>
+                        <!-- <li> Last updated {{ course.createdDate }}</li> -->
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--  course tabs -->
+    <div class="bg-white border-b z-20 mb-4 overflow-hidden" uk-sticky="media: 992; offset:70">
+        <div class="mcontainer py-0 lg:px-20 flex justify-between items-center">
+
+            <nav class="cd-secondary-nav nav-smal l flex-1">
+                <ul class="space-x-3" uk-scrollspy-nav="closest: li; scroll: true">
+                    <li><a href="#Overview" uk-scroll>Overview</a></li>
+                    <li><a href="#curriculum" uk-scroll>Curriculum</a></li>
+                    <li><a href="#faq" uk-scroll>FAQ</a></li>
+                    <li><a href="#announcement">Announcement</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                </ul>
+            </nav>
+
+            <div class="flex space-x-3">
+                <a (click)="addToWishlist(course.id)" style="cursor: pointer;" class="flex items-center justify-center h-9 px-6 rounded-md bg-gray-100"> Lưu Khoá Học </a>
+                <a *ngIf="isInCourse == false && course.price == 0" (click)="registerCourse(course.id)" style="cursor: pointer;" class="flex items-center justify-center h-9 px-6 rounded-md bg-blue-600 text-white"> Đăng Ký Học </a>
+                <a *ngIf="isLogin == false && course.price == 0" (click)="requireLogin()" style="cursor: pointer;" class="flex items-center justify-center h-9 px-6 rounded-md bg-blue-600 text-white"> Đăng Ký Học </a>
+                <a *ngIf="isInCourse == false && course.price > 0" (click)="addToCart(course.id)" style="cursor: pointer;" class="flex items-center justify-center h-9 px-6 rounded-md bg-blue-600 text-white"> Thêm Vào Giỏ Hàng </a>
+                <a *ngIf="isLogin == false && course.price > 0" (click)="requireLogin()" style="cursor: pointer;" class="flex items-center justify-center h-9 px-6 rounded-md bg-blue-600 text-white"> Thêm Vào Giỏ Hàng </a>
+                <a *ngIf="isInCourse == true" routerLink="/course/learn/{{course.slug}}/{{course.sections[0].courseLectures[0].id}}" class="flex items-center justify-center h-9 px-6 rounded-md bg-blue-600 text-white"> Tiếp Tục Học </a>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container p-0">
+
+        <div class="space-y-5 lg:w-9/12 mx-auto">
+
+            <!-- course description -->
+            <div class="tube-card p-5 lg:p-8" id="Overview">
+
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-3"> Mô tả khóa học </h3>
+                        <p [innerHTML]="course.description">
+                            <!-- {{ course.description }} -->
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-1"> Nội dung khóa học </h3>
+                        <div [innerHTML]="course.content">
+                            <!-- {{ course.content }} -->
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- course Curriculum -->
+            <div id="curriculum">
+                <h3 class="mb-4 text-xl font-semibold lg:mb-5"> Course Curriculum </h3>
+                <ul uk-accordion="multiple: true" class="tube-card p-4 divide-y space-y-3">
+
+                    <li class="uk-open mt-2" *ngFor="let sec of course.sections">
+                        <a class="uk-accordion-title text-md mx-2 font-semibold mt-2" href="#">  {{ sec.name }}</a>
+                        <div class="uk-accordion-content mt-3 text-base">
+
+                            <ul class="course-curriculum-list font-medium">
+                                <li class=" hover:bg-gray-100 p-2 flex rounded-md" *ngFor="let lec of sec.courseLectures">
+                                    <i name="play-circle" class="text-2xl mr-2"></i> {{ lec.name }} <span class="text-sm ml-auto"> {{ lec.duration }} </span>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+
+            <!-- course Faq -->
+            <div class="tube-card p-5 lg:p-8" id="faq">
+
+                <h3 class="text-xl font-semibold mb-3 lg:mb-5"> Course Faq </h3>
+
+                <ul uk-accordion="multiple: true" class="divide-y space-y-3">
+                    <li class="bg-gray-100 px-4 py-3 rounded-md uk-close" *ngFor="let faq of course.courseFaqs">
+                        <a class="uk-accordion-title font-semibold text-base" href="#"> {{ faq.title }} </a>
+                        <div class="uk-accordion-content mt-3">
+                            <p> {{ faq.content }} </p>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+
+            <!-- course Announcement -->
+            <div  id="announcement" class="tube-card p-5 lg:p-8">
+                <h3 class="text-xl font-semibold lg:mb-5"> Thông báo từ tác giả </h3>
+
+                <div class="flex items-center gap-x-4 mb-5">
+                    <img src="./../../../../../assets/client/assets/images/avatars/placeholder.png" alt="" class="rounded-full shadow w-12 h-12">
+                    <div>
+                        <h4 class="-mb-1 text-base  font-semibold"> CoursePlus Academy</h4>
+                        <span class="text-sm"> Instructor <span class="text-gray-500"> 1 year ago </span> </span>
+                    </div>
+                </div>
+
+                <div [innerHTML]="course.announcement">
+                    <!-- {{ course.announcement }} -->
+                </div>
+
+            </div>
+
+
+            <!-- course Reviews -->
+            <div  id="reviews" class="tube-card p-5">
+                <h3 class="text-xl font-semibold mb-3"> Bình luận </h3>
+
+                <div class="space-y-4 my-5">
+
+                    <div class="bg-gray-50 border flex gap-x-4 p-4 relative rounded-md">
+                        <img src="./../../../../../assets/client/assets/images/avatars/placeholder.png" alt="" class="rounded-full shadow w-12 h-12">
+                        <div>
+                            <h4 class="text-base m-0 font-semibold"> Stella Johnson</h4>
+                            <span class="text-gray-700 text-sm"> 14th, April 2021 </span>
+                            <p class="mt-3 md:ml-0 -ml-16">
+                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ut laoreet dolore
+                                magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
+                                ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+                            </p>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>

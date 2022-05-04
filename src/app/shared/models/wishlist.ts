@@ -1,0 +1,31 @@
+export class Wishlist {
+  courseId!: string;
+  wishlistId!: string;
+    name!: string;
+    slug!: string;
+    description!: string;
+    content!: string;
+    announcement!: string;
+    urlImage!: string;
+    urlVideoIntro!: string;
+    urlYoutubeVideo!: string;
+    language!: string;
+    price!: number;
+    originalPrice!: number;
+    priceUnit!: string;
+    isFeatured!: boolean;
+    allowEnrolled!: boolean;
+    startDate!: string;
+    endDate!: string;
+    viewCount!: number;
+    courseCategoryId!: string;
+    createdBy!: string;
+    modifiedBy!: string;
+    isActive!: boolean;
+    isDeleted!: boolean;
+    deletedBy!: string;
+    createdDate!: string;
+    createdTime!: string;
+    modifiedDate!: string;
+    modifiedTime!: string;
+}

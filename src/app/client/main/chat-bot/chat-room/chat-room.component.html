@@ -1,0 +1,98 @@
+<div class="main_content">
+  <div class="container">
+    <div class="chat-bot-none" *ngIf="isHasRoom == false">
+      <p>Chào mừng bạn đến hệ thống chatbot tự động của chúng tôi!</p>
+      <a (click)="createChatRoom()" style="cursor: pointer;">Tiếp tục</a>
+    </div>
+    <div class="chat-wrapper" *ngIf="isHasRoom == true">
+      <!-- <div class="chat-bar">
+        <div class="chat-bar-header">
+          <h3>Chats</h3>
+          <div class="chat-bar-action">
+          </div>
+        </div>
+        <div class="chat-search-bar">
+          <input type="text" placeholder="Enter to search...">
+        </div>
+        <div class="chat-bar-body">
+          <div class="scrollbar-container">
+            <h6 class="room-div">Liên hệ gần đây</h6>
+>
+            <h6 class="room-div">Tất cả liên hệ</h6>
+
+          </div>
+        </div>
+      </div> -->
+      <div class="chat-main">
+        <div class="chat-header">
+          <div class="chat-header__left">
+              <div class="chat-header__left-avatar">
+                  <img src="./../../../../../assets/client/assets/images/avatars/placeholder.png" alt="">
+              </div>
+              <div class="chat-header__left-name">
+                  <h5>Chat Bot</h5>
+                  <p>Online</p>
+              </div>
+          </div>
+          <div class="chat-header__right">
+              <a href="#"><i class="fa fa-phone"></i></a>
+              <a href="#"><i class="fa fa-ellipsis-v"></i></a>
+
+
+
+          </div>
+        </div>
+        <div class="chat-content" #scrollMe>
+          <div class="chat-content-wrap" *ngFor="let mess of messages">
+              <div>
+                  <div class="message self" *ngIf="mess.createdBy != null">
+                     <div class="message-wrapper">
+                        <div class="message-content"><span>{{mess.content}}</span></div>
+                     </div>
+                     <div class="message-options">
+                        <div class="avatar avatar-sm">
+                          <img alt="" src="./../../../../../assets/client/assets/images/avatars/placeholder.png">
+                        </div>
+                        <span class="message-date">9:12am</span>
+                     </div>
+                  </div>
+                  <div class="message" *ngIf="mess.createdBy == null">
+                    <div class="message-wrapper">
+                       <div class="message-content"><span>{{mess.content}}</span></div>
+                    </div>
+                    <div class="message-options">
+                       <div class="avatar avatar-sm">
+                         <img alt="" src="./../../../../../assets/client/assets/images/avatars/placeholder.png">
+                         <!-- <img alt="" src="./../../../../../assets/client/assets/images/chat-group.jpg" *ngIf="isRoom == true && mess.user.avatarUrl == null"> -->
+                        </div>
+                       <span class="message-date">9:12am</span>
+                    </div>
+                 </div>
+               </div>
+               <!-- <div>
+                  <div class="message self">
+                     <div class="message-wrapper">
+                        <div class="message-content"><span>Pictures will keep your audience from being bored. In order for you to succeed, you need to keep them interested and involved.</span></div>
+                     </div>
+                     <div class="message-options">
+                        <div class="avatar avatar-sm"><img alt="" src="./../../../../../assets/client/assets/images/user-12.png"></div>
+                        <span class="message-date">9:12am</span>
+                     </div>
+                  </div>
+               </div> -->
+          </div>
+        </div>
+        <div class="chat-form">
+          <div class="chat-form-inner">
+              <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+                  <input type="text" formControlName="content" class="chat__input" placeholder="Nhập tin nhắn để gửi...">
+                  <input type="hidden" [(ngModel)]="botRoom.id" formControlName="roomId">
+                  <!-- <input type="hidden" [(ngModel)]="currentUserId" formControlName="userId"> -->
+                  <button type="submit" class="chat__submit"><i class="fa fa-share"></i></button>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

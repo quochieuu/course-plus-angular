@@ -1,0 +1,84 @@
+<h1 class="my-6 text-lg font-bold text-gray-700 dark:text-gray-300">Chỉnh sửa bài học</h1>
+
+<div class="container w-100">
+  <div class="row mt-5">
+    <div class="col-md-12">
+      <form (ngSubmit)="onSubmit()" class="hct-form">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2">Tiêu đề</label>
+              <input
+                class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="text" [(ngModel)]="item.name" name="name" required placeholder="Nhập tiêu đề bài học...">
+              <small>Hãy đặt tiêu đề trên 50 kí tự để người dùng hiểu hơn về bài học.</small>
+              </div>
+              
+              <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2">Video bài học</label>
+                <input
+                  class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  type="file" [(ngModel)]="item.urlVideo" name="urlVideo">
+                  <small>Hãy upload video bài học của bạn.</small>
+              </div>
+              
+              <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2">Video bài học (Youtube)</label>
+                <input
+                  class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  type="text" [(ngModel)]="item.urlYoutubeVideo" name="urlYoutubeVideo" placeholder="https://www.youtube.com/watch?v=xxxxx" [(ngModel)]="item.urlYoutubeVideo" name="urlYoutubeVideo">
+                  <small>Nếu video có sẵn từ <b>Youtube</b> hãy chèn link video bài học.</small>
+              </div>
+
+              <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2">Nội dung bài học</label>
+                <angular-editor [config]="editorConfig" [(ngModel)]="item.content" name="content"></angular-editor>
+                <small>Nhập nội dung bài học chi tiết.</small>
+            </div>
+    
+            <div class="mb-4">
+              <button
+                class="rounded-md inline-block align-baseline text-sm text-white bg-green-500 hover:text-blue-800 px-4 py-1"
+                type="submit">Xuất bản</button>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2">Thời lượng bài học</label>
+              <input
+                class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="text" [(ngModel)]="item.duration" name="duration" pattern="[0-9]{2}:[0-9]{2}:[0-9]{2}">
+                <small>Hãy nhập thời lượng bài học theo định dạng <b>HH:mm:ss</b>.</small>
+            </div>
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2">Loại bài học</label>
+                <select [(ngModel)]="item.lectureType" name="lectureType" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                  <option *ngFor="let type of lectureType" [value]="type.type">{{type.name}}</option>
+                </select>
+                <small>Hãy chọn một loại bài học.</small>
+            </div>
+            
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2">Video xem trước khóa học (Youtube, nếu có)</label>
+              <input
+                class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="text" [(ngModel)]="item.urlYoutubePreview" name="urlYoutubePreview" required placeholder="https://www.youtube.com/watch?v=xxxxx">
+                <small>Hãy nhập link xem trước khóa học từ <b>Youtube</b>.</small>
+            </div>
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2">Video xem trước khóa học (nếu có)</label>
+              <input
+                class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="file" [(ngModel)]="item.urlPreview" name="urlPreview" required>
+                <small>Hoặc upload video xem trước khóa học.</small>
+            </div>
+
+          </div>
+          
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- <a [routerLink]="['/admin/course-section', course.slug]"
+  class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">Back to list</a> -->

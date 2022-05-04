@@ -1,0 +1,46 @@
+<div class="main_content">
+  <div class="container">
+    <h1 class="my-6 text-lg font-bold text-gray-700 dark:text-gray-300">Thêm câu hỏi</h1>
+
+    <div class="w-100">
+      <div class="row">
+        <div class="col-md-12">
+          <form [formGroup]="createForm" (ngSubmit)="onSubmit()" class="hct-form">
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2">Tiêu đề</label>
+              <input
+                class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="text" formControlName="name" required placeholder="Nhập tiêu đề câu hỏi...">
+            </div>
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2">Danh mục <span
+                  class="text-danger">*</span></label>
+              <select formControlName="topicId"
+                class=" appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:-outline">
+                <option value="" selected>-- Chọn danh mục --</option>
+                <option *ngFor="let topic of topics" [ngValue]="topic.id">{{topic.name}}</option>
+              </select>
+              <small>Chọn danh mục để người dùng tìm câu hỏi của bạn dễ dàng hơn.</small>
+            </div>
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2">Nội dung</label>
+              <!-- <input
+                class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="text" formControlName="content" required> -->
+                <angular-editor formControlName="content" [config]="editorConfig"></angular-editor>
+            </div>
+
+            <div class="mb-4">
+              <button
+                class="rounded-md inline-block align-baseline text-sm text-white bg-green-500 hover:text-blue-800 px-4 py-1"
+                type="submit">Xuất Bản</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <a routerLink="/forums/topics"
+      class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">Back to list</a>
+  </div>
+</div>

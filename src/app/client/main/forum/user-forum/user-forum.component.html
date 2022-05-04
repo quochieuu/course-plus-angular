@@ -1,0 +1,43 @@
+<div class="main_content">
+  <div class="container">
+    <div class="text-2xl font-semibold mb-2"> Câu hỏi của bạn </div>
+    <a routerLink="/forum/create" class="mb-2">Thêm câu hỏi của bạn</a>
+    <div class="forums-box mt-3">
+      <div class="post-header forums-header">
+        <div class="col-md-6 col-sm-6 support-info">
+          <span> Forum </span>
+        </div>
+        <div class="col-md-6 col-sm-6 support-category-menus">
+          <ul class="forum-titles">
+            <li class="forum-topic-count"> Answers</li>
+            <li class="forum-topic-count"> Created Date</li>
+            <li class="forum-topic-count"> Actions</li>
+          </ul>
+        </div>
+      </div>
+      <div class="community-posts-wrapper bb-radius">
+        <div *ngFor="let question of questions"
+        class="community-post style-two forum-item loop-item-0 bbp-forum-status-open bbp-forum-visibility-publish odd  post-4998 forum type-forum status-publish has-post-thumbnail hentry">
+          <div class="col-md-6 post-content">
+            <div class="entry-content">
+              <a [routerLink]="['/forum/', question.slug]">
+                <h3 class="post-title">{{ question.name }}</h3>
+              </a>
+              <p>{{ question.authorName }}</p>
+            </div>
+          </div>
+          <div class="col-md-6 post-meta-wrapper">
+            <ul class="forum-titles">
+              <li class="forum-topic-count">{{ question.numberOfAnswers }}</li>
+              <li class="forum-topic-count">{{ question.createdDate | date: 'MMM d, y H:mm:ss' : '+0700' }}</li>
+              <li class="forum-topic-count">
+                <a [routerLink]="['/forum/edit/', question.id]" class="mr-3">Edit</a>
+                <a (click)="deleteForum(question.id)" style="cursor: pointer;">Delete</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

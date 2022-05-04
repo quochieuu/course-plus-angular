@@ -1,0 +1,83 @@
+<h1 class="my-6 text-lg font-bold text-gray-700 dark:text-gray-300">Chat Bot</h1>
+<div class="flex justify-between filter-bar">
+  <div>
+
+  </div>
+
+  <div>
+    <a routerLink="/admin/chat-bot/create" class="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-3 py-1 rounded-md text-xs text-white bg-green-500 border border-transparent active:bg-green-600 hover:bg-green-600 focus:ring focus:ring-purple-300">
+      Thêm mới
+    </a>
+  </div>
+
+</div>
+
+<div
+    class="w-full overflow-hidden border border-gray-200 dark:border-gray-700 rounded-lg ring-black ring-opacity-5 mb-8 rounded-b-lg">
+    <div class="w-full overflow-x-auto">
+        <table class="w-full whitespace-no-wrap">
+            <thead
+                class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b border-gray-200 dark:border-gray-700 bg-gray-100 dark:text-gray-400 dark:bg-gray-800">
+                <tr>
+                    <td class="px-4 py-3">Content</td>
+                    <td class="px-4 py-3"></td>
+                </tr>
+            </thead>
+            <tbody *ngFor="let item of suggestions ; let i = index"
+                class="bg-white divide-y divide-gray-100 dark:divide-gray-700 dark:bg-gray-800 text-gray-700 dark:text-gray-400">
+                <tr>
+                    <td class="px-4 py-3"><span class="text-sm">{{item.content}}</span></td>
+                    <td class="px-4 py-3">
+                        <div class="flex justify-end text-right">
+                          <!-- <a [routerLink]="['/admin/book-category/update', item.id]">
+                            <div class="p-2 cursor-pointer text-gray-400 hover:text-green-600">
+                                <p data-tip="true" data-for="edit" currentitem="false"><svg stroke="currentColor"
+                                        fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round"
+                                        stroke-linejoin="round" height="1em" width="1em"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                    </svg></p>
+                            </div>
+                          </a> -->
+                          <a [routerLink]="['/admin/chat-bot/create-response/', item.id]">Thêm phản hồi</a>
+                           <a (click)="delete(item.id)">
+                            <div class="p-2 cursor-pointer text-gray-400 hover:text-red-600">
+                              <p data-tip="true" data-for="delete" currentitem="false"><svg stroke="currentColor"
+                                      fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round"
+                                      stroke-linejoin="round" height="1em" width="1em"
+                                      xmlns="http://www.w3.org/2000/svg">
+                                      <polyline points="3 6 5 6 21 6"></polyline>
+                                      <path
+                                          d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                      </path>
+                                      <line x1="10" y1="11" x2="10" y2="17"></line>
+                                      <line x1="14" y1="11" x2="14" y2="17"></line>
+                                  </svg></p>
+                          </div>
+                          </a>
+                          <div class="flex justify-end text-right">
+                            <a class="tgg-action" (click)="tabToggle(i+10001)" *ngIf="showTab != i+10001">
+                              <i class="bx bx-chevron-down"></i>
+                            </a>
+                            <a class="tgg-action" (click)="tabCancel()" *ngIf="showTab == i+10001">
+                              <i class="bx bx-chevron-up"></i>
+                            </a>
+                          </div>
+
+                        </div>
+                    </td>
+                </tr>
+                <tr *ngIf="showTab == i+10001">
+                  <td colspan="5">
+                    <span *ngIf="item.chatBotResponses.length == 0"> Chưa có phản hồi cho câu hỏi này</span>
+                    <ul *ngFor="let res of item.chatBotResponses">
+                      <li>{{ res.content }}</li>
+
+                    </ul>
+                  </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="uk-sticky-placeholder" style="height: 72px; margin: 0px;"></div>
+<!-- Main Contents -->
+<div class="main_content">
+  <div style="background-color: #7798f9; width: 70%; height: 38px; margin-top: -134px; float: right;"></div>
+  <div class="container">
+    <div class="text-2xl font-semibold"> Kết quả </div>
+    <div class="result-columns mt-3">
+      <div class="col">
+          <p>Số câu đúng</p>
+          <h3>{{ result.noCorrectQuestion }}/{{result.totalQuestion }}</h3>
+      </div>
+      <div class="col">
+          <p>Điểm số</p>
+          <h3>{{ result.score }}</h3>
+      </div>
+      <div class="col">
+          <p>Thời gian nộp</p>
+          <h3>{{ hours }}:{{minutes}}:{{ seconds }}</h3>
+          <h3 style="font-size: 15px;">{{ result.finishedAt | date: 'dd/MM/yyyy HH:mm:ss' : '+0700' }}</h3>
+      </div>
+  </div>
+  </div>
+</div>

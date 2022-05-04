@@ -1,0 +1,81 @@
+<div class="main_content">
+  <div class="container">
+
+    <modal-popup id="modal1">
+            <div class="modal__header">
+                <h3>Thêm mới tin nhắn</h3>
+            </div>
+            <div class="modal__content">
+                <form [formGroup]="createForm" (ngSubmit)="onSubmit('modal1')">
+                    <div>
+                        <label for="first-name"> Room Name</label>
+                        <input formControlName="name" name="name" type="text" placeholder="Nhập tên nhóm..." id="first-name" class="shadow-none with-border">
+                    </div>
+                    <div>
+                        <label for="first-name"> Members</label>
+
+                        <ng-multiselect-dropdown
+                          formControlName="users"
+                            [settings]="dropdownSettings"
+                            [data]="users">
+                        </ng-multiselect-dropdown>
+
+                    </div>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+            <div class="modal__footer">
+                <button (click)="closeModal('modal1');">Close</button>
+            </div>
+            
+        </modal-popup>
+
+    <div class="chat-wrapper">
+      <div class="chat-bar">
+        <div class="chat-bar-header">
+          <h3>Chats</h3>
+          <div class="chat-bar-action">
+            <a (click)="openModal('modal1')"><i class="fa fa-plus"></i></a>
+          </div>
+        </div>
+        <div class="chat-search-bar">
+          <input type="text" placeholder="Enter to search...">
+        </div>
+        <div class="chat-bar-body">
+          <div class="scrollbar-container">
+            <ul class="list-chat-items">
+              <li class="chat-item" *ngFor="let room of rooms">
+                <a [routerLink]="['/chat', room.roomId]">
+                  <div class="chat-item__avatar">
+                    <img *ngIf="room.userCount == 2" src="./../../../../../assets/client/assets/images/user-12.png" alt="">
+                    <img *ngIf="room.userCount > 2" src="./../../../../../assets/client/assets/images/chat-group.jpg" alt="">
+                    <span class="badge" *ngIf="room.userCount>2"><i class="fa fa-shield"></i></span>
+                  </div>
+                  <div class="chat-item__body">
+                    <div class="chat-item__body-left">
+                      <h5>{{room.roomName}}</h5>
+                      <p>{{room.lastMessage}}</p>
+                    </div>
+                    <div class="chat-item__body-right">
+                      <time>{{room.lastChatTime | date: 'H:mm' : 'UTC'}}</time>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="chat-main no-message">
+        <div class="no-message-container">
+          <div>
+            <img src="./../../../../../assets/client/assets/images/unselected-chat.svg" alt="">
+          </div>
+          <div class="lead">
+            <p>Select a chat to read messages</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

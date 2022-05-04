@@ -1,0 +1,187 @@
+<div class="main_content">
+    <div class="container">
+
+        <modal-popup id="modal1">
+            <div class="modal__header">
+                <h3>Thêm mới tin nhắn</h3>
+            </div>
+            <div class="modal__content">
+                <form action="">
+                    <div>
+                        <label for="first-name"> Room Name</label>
+                        <input type="text" placeholder="" id="first-name" class="shadow-none with-border">
+                    </div>
+                    <div>
+                        <label for="first-name"> Members</label>
+                        <input type="text" placeholder="" id="first-name" class="shadow-none with-border">
+                    </div>
+                </form>
+            </div>
+            <div class="modal__footer">
+                <button (click)="closeModal('modal1');">Close</button>
+            </div>
+            
+        </modal-popup>
+
+      <div class="chat-wrapper">
+        <div class="chat-bar">
+          <div class="chat-bar-header">
+            <h3>Chats</h3>
+            <div class="chat-bar-action">
+              <a (click)="openModal('modal1')"><i class="fa fa-plus"></i></a>
+            </div>
+          </div>
+          <div class="chat-search-bar">
+            <input type="text" placeholder="Enter to search...">
+          </div>
+          <div class="chat-bar-body">
+            <div class="scrollbar-container">
+              <h6 class="room-div">Liên hệ gần đây</h6>
+              <ul class="list-chat-items">
+                <li class="chat-item" *ngFor="let room of rooms">
+                  <!-- <a [routerLink]="['/chat', room.roomId]"> -->
+                    <a (click)="loadRoom(room.roomId)">
+                    <div class="chat-item__avatar">
+                      <img *ngIf="room.userCount == 2" src="./../../../../../assets/client/assets/images/avatars/placeholder.png" alt="">
+                      <img *ngIf="room.userCount > 2" src="./../../../../../assets/client/assets/images/chat-group.jpg" alt="">
+                      <span class="badge" *ngIf="room.userCount>2"><i class="fa fa-shield"></i></span>
+                    </div>
+                    <div class="chat-item__body">
+                      
+                      <div class="chat-item__body-left">
+                        <h5>{{room.roomName}}</h5>
+                        <p>{{room.lastMessage}}</p>
+                      </div>
+                      <div class="chat-item__body-right">
+                        <time>{{room.lastChatTime | date: 'H:mm' : 'UTC'}}</time>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+              <h6 class="room-div">Tất cả liên hệ</h6>
+              <ul class="list-chat-items">
+                <li class="chat-item" *ngFor="let user of users">
+                  <!-- <a [routerLink]="['/chat', room.roomId]"> -->
+                    <a (click)="loadRoom(room.roomId)">
+                    <div class="chat-item__avatar">
+                      <img *ngIf="user.avatarUrl == null" src="./../../../../../assets/client/assets/images/avatars/placeholder.png" alt="">
+                    </div>
+                    <div class="chat-item__body">
+                      
+                      <div class="chat-item__body-left">
+                        <h5>{{user.fullName}}</h5>
+                        <p>@{{user.username}}</p>
+                      </div>
+                      <div class="chat-item__body-right">
+                        <!-- <time>{{room.lastChatTime | date: 'H:mm' : 'UTC'}}</time> -->
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="chat-main">
+          <div class="chat-header">
+            <div class="chat-header__left">
+                <div class="chat-header__left-avatar">
+                    <img src="./../../../../../assets/client/assets/images/chat-group.jpg" alt="" *ngIf="receiverAvatar == 'room'">
+                    <img src="./../../../../../assets/client/assets/images/avatars/placeholder.png" alt="" *ngIf="receiverAvatar == ''">
+                    <img src="./../../../../../assets/client/assets/images/avatars/placeholder.png" alt="" *ngIf="receiverAvatar == null">
+                </div>
+                <div class="chat-header__left-name">
+                    <h5>{{roomName}}</h5>
+                    <p>Online</p>
+                </div>
+            </div>
+            <div class="chat-header__right">
+                <a href="#"><i class="fa fa-phone"></i></a>
+                <a href="#"><i class="fa fa-ellipsis-v"></i></a>
+                <div uk-drop="mode: click;offset:5" class="header_dropdown profile_dropdown">
+                  <ul class="chat-action">   
+                    <li> 
+                        <a routerLink="/profile/update-profile">
+                            <i name="card-outline" class="is-icon"></i>
+                            Xem thành viên
+                        </a>
+                    </li>
+                    <li> 
+                      <a routerLink="/profile/update-profile">
+                          <i name="card-outline" class="is-icon"></i>
+                          Thêm thành viên
+                      </a>
+                  </li>
+                      <li> 
+                          <a (click)="delete(room.roomId)">
+                              <i name="card-outline" class="is-icon"></i>
+                              Xóa tin nhắn
+                          </a>
+                      </li>
+                      <li> 
+                        <a routerLink="/profile/update-profile" style="color: red;">
+                            <i name="card-outline" class="is-icon"></i>
+                            Rời cuộc hội thoại
+                        </a>
+                    </li>
+                  </ul>
+              </div> 
+
+
+            </div>
+          </div>
+          <div class="chat-content" #scrollMe>
+            <div class="chat-content-wrap">
+                <div *ngFor="let mess of messages">
+                    <div class="message self" *ngIf="mess.userId === currentUserId">
+                       <div class="message-wrapper">
+                          <div class="message-content"><span>{{mess.content}}</span></div>
+                       </div>
+                       <div class="message-options">
+                          <div class="avatar avatar-sm">
+                            <img alt="" src="./../../../../../assets/client/assets/images/avatars/placeholder.png" *ngIf="senderAvatar == null">
+                          </div>
+                          <span class="message-date">9:12am</span>
+                       </div>
+                    </div>
+                    <div class="message" *ngIf="mess.userId !== currentUserId">
+                      <div class="message-wrapper">
+                         <div class="message-content"><span>{{mess.content}}</span></div>
+                      </div>
+                      <div class="message-options">
+                         <div class="avatar avatar-sm">
+                           <img alt="" src="./../../../../../assets/client/assets/images/avatars/placeholder.png" *ngIf="receiverAvatar == null">
+                           <img alt="" src="./../../../../../assets/client/assets/images/chat-group.jpg" *ngIf="isRoom == true && mess.user.avatarUrl == null">
+                          </div>
+                         <span class="message-date">9:12am</span>
+                      </div>
+                   </div>
+                 </div>
+                 <!-- <div>
+                    <div class="message self">
+                       <div class="message-wrapper">
+                          <div class="message-content"><span>Pictures will keep your audience from being bored. In order for you to succeed, you need to keep them interested and involved.</span></div>
+                       </div>
+                       <div class="message-options">
+                          <div class="avatar avatar-sm"><img alt="" src="./../../../../../assets/client/assets/images/user-12.png"></div>
+                          <span class="message-date">9:12am</span>
+                       </div>
+                    </div>
+                 </div> -->
+            </div>
+          </div>
+          <div class="chat-form">
+            <div class="chat-form-inner">
+                <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+                    <input type="text" formControlName="content" class="chat__input" placeholder="Nhập tin nhắn để gửi...">
+                    <input type="hidden" [(ngModel)]="roomId" formControlName="roomId">
+                    <input type="hidden" [(ngModel)]="currentUserId" formControlName="userId">
+                    <button type="submit" class="chat__submit"><i class="fa fa-share"></i></button>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

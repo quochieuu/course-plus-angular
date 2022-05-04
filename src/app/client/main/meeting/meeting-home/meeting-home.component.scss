@@ -1,0 +1,66 @@
+.bnn-left {
+  width: 60%;
+  float: left;
+}
+
+.bnn-right {
+  width: 30%;
+  float: left;
+  text-align: right;
+}
+
+.bnn-right img {
+  width: 220px;
+  float: right;
+}
+
+.bnn-left h3 {
+  font-size: 24px;
+}
+
+.bnn-action {
+  display: flex;
+}
+
+button.bnn-btn {
+  background: #518bf7;
+  color: #fff;
+  padding: 2px 17px;
+  height: 44px;
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 5px;
+  margin-right: 10px;
+  width: 170px;
+}
+
+.bnn-form {
+  display: flex;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.bnn-input {
+  border: 1px solid #ccc!important;
+}
+
+.bnn-btn-text {
+  width: 120px;
+}
+
+
+.banner-wr {
+  margin-top: 10%;
+}
+
+.hosted {
+  display: block;
+  clear: both;
+  margin-top: 3rem;
+}
+
+.hosted h3 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}

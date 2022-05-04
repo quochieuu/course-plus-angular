@@ -1,0 +1,35 @@
+<div class="main_content">
+  <div class="container">
+    <div class="text-2xl font-semibold mb-3"> Danh mục diễn đàn </div>
+    <div class="forums-box">
+      <div class="post-header forums-header">
+        <div class="col-md-6 col-sm-6 support-info">
+          <span> Forum </span>
+        </div>
+        <div class="col-md-6 col-sm-6 support-category-menus">
+          <ul class="forum-titles">
+            <li class="forum-topic-count"> Created Date</li>
+          </ul>
+        </div>
+      </div>
+      <div class="community-posts-wrapper bb-radius">
+        <div *ngFor="let topic of topics"
+        class="community-post style-two forum-item loop-item-0 bbp-forum-status-open bbp-forum-visibility-publish odd  post-4998 forum type-forum status-publish has-post-thumbnail hentry">
+          <div class="col-md-6 post-content">
+            <div class="entry-content">
+              <a [routerLink]="['/forum/questions/', topic.slug]">
+                <h3 class="post-title">{{ topic.name }}</h3>
+              </a>
+              <p>{{ topic.description }}</p>
+            </div>
+          </div>
+          <div class="col-md-6 post-meta-wrapper">
+            <ul class="forum-titles">
+              <li class="forum-topic-count">{{ topic.createdDate | date: 'MMM d, y H:mm:ss' : '+0700' }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

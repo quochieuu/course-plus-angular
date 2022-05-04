@@ -1,0 +1,32 @@
+.result-columns .col {
+  min-width: 154px;
+  min-height: 154px;
+  -moz-border-radius: 14px;
+  -webkit-border-radius: 14px;
+  border-radius: 14px;
+  -khtml-border-radius: 14px;
+  background: #3a4bcd;
+  margin: 0 35px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+.result-columns .col p {
+  font-family: "Nunito", sans-serif;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  color: #fff;
+}
+ .result-columns .col h3 {
+  font-family: "Nunito", sans-serif;
+  font-size: 35px;
+  line-height: 47px;
+  font-weight: 400;
+  color: #fff;
+}
+.result-columns {
+  display: flex;
+  justify-content: center;
+}

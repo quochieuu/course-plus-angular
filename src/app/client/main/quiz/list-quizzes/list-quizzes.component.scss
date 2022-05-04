@@ -1,0 +1,20 @@
+.quizp span:last-child:after {
+  content: "";
+}
+
+.quizp span:after {
+  content: "•";
+  margin: 0 11px;
+  color: #929292;
+}
+.quizp span {
+  color: #6d6c6c;
+}
+.quizp {
+  font-size: 14px;
+  margin-top: 0!important;
+}
+
+a.btnbg {
+  padding: 8px 15px!important;
+}

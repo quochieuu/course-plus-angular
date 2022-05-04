@@ -1,0 +1,116 @@
+<div id="wrapper" class="flex flex-col justify-between h-screen auth-conf">
+    
+    <!-- header-->
+    <div class="bg-white py-4 shadow dark:bg-gray-800">
+        <div class="max-w-6xl mx-auto">
+
+
+            <div class="flex items-center lg:justify-between justify-around">
+
+                <a routerLink="/">
+                    <img src="./../../../../assets/client/assets/images/logo.png" alt="" class="w-32">
+                </a>
+
+                <div class="capitalize flex font-semibold hidden lg:block my-2 space-x-3 text-center text-sm">
+                    <a routerLink="/login" class="py-3 px-4">Login</a>
+                    <a routerLink="/register" class="bg-purple-500 purple-500 px-6 py-3 rounded-md shadow text-white">Register</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Content-->
+    <div>
+        <div class="lg:p-12 max-w-xl lg:my-0 my-12 mx-auto p-6 space-y-">
+            <form class="lg:p-10 p-6 space-y-3 relative bg-white shadow-xl rounded-md" name="form"
+            (ngSubmit)="f.form.valid && onSubmit()"
+            #f="ngForm">
+                <h1 class="lg:text-2xl text-xl font-semibold mb-6"> Register </h1>
+
+                <div class="grid lg:grid-cols-2 gap-3">
+                    <div>
+                        <label class="mb-0" for="first-name"> First Name </label>
+                        <input type="text" placeholder="Your Name"  id="first-name" class="bg-gray-100 h-12 mt-2 px-3 rounded-md w-full"
+                        name="firstName"
+                        [(ngModel)]="form.firstName"
+                        #firstName="ngModel">
+                        <div class="err" *ngIf="f.submitted">
+                            <div *ngIf="errorMessage.FirstName != undefined || errorMessage.FirstName != null">First name is required</div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="mb-0" for="last-name"> Last  Name </label>
+                        <input type="text" placeholder="Last  Name"  id="last-name" class="bg-gray-100 h-12 mt-2 px-3 rounded-md w-full"
+                        name="lastName"
+                        [(ngModel)]="form.lastName"
+                        #lastName="ngModel">
+                        <div class="err" *ngIf="f.submitted">
+                            <div *ngIf="errorMessage.LastName != undefined || errorMessage.LastName != null">Last name is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label class="mb-0" for="username"> Username </label>
+                    <input type="text" placeholder="Username" id="username" class="bg-gray-100 h-12 mt-2 px-3 rounded-md w-full"
+                    name="userName"
+                        [(ngModel)]="form.userName"
+                        #userName="ngModel">
+                        <div class="err" *ngIf="f.submitted">
+                            <div *ngIf="errorMessage.UserName != undefined || errorMessage.UserName != null || errorMessage.UserName == ''">Username is required</div>
+                        </div>
+                </div>
+                <div>
+                    <label class="mb-0" for="email"> Email Address </label>
+                    <input type="email" placeholder="Info@example.com" id="email" class="bg-gray-100 h-12 mt-2 px-3 rounded-md w-full"
+                    name="email"
+                        [(ngModel)]="form.email"
+                        #email="ngModel">
+                        <div class="err" *ngIf="f.submitted">
+                            <div *ngIf="errorMessage.Email != undefined || errorMessage.Email != null">Email is required</div>
+                        </div>
+                </div>
+                <div>
+                    <label class="mb-0" for="password"> Password </label>
+                    <input type="password" placeholder="******" id="password" class="bg-gray-100 h-12 mt-2 px-3 rounded-md w-full"
+                    name="password"
+                    [(ngModel)]="form.password"
+                    #password="ngModel">
+                    <div class="err" *ngIf="f.submitted">
+                        <div *ngIf="errorMessage.Password != undefined || errorMessage.Password != null">Password is required</div>
+                    </div>
+                </div>
+                
+
+                <div class="checkbox">
+                    <input type="checkbox" id="chekcbox1" checked="">
+                    <label for="chekcbox1"><span class="checkbox-icon"></span> I agree to the <a href="pages-terms.html" target="_blank" class="uk-text-bold uk-text-small uk-link-reset"> Terms and Conditions </a>
+                    </label>
+                </div>
+
+                <div>
+                    <button type="submit" class="bg-blue-600 font-semibold p-2 mt-5 rounded-md text-center text-white w-full">
+                        <img src="./../../../../assets/client/assets/images/download.gif" alt="" class="btn-loading" *ngIf="isLoading == true">
+                        Get Started</button>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+    
+    <!-- Footer -->
+
+    <div class="lg:mb-5 py-3 uk-link-reset">
+        <div class="flex flex-col items-center justify-between lg:flex-row max-w-6xl mx-auto lg:space-y-0 space-y-3">
+            <div class="flex space-x-2 text-gray-700 uppercase">
+                <a href="#"> About</a>
+                <a href="#"> Help</a>
+                <a href="#"> Terms</a>
+                <a href="#"> Privacy</a>
+            </div>
+            <p class="capitalize"> © copyright 2021 by Courseplus</p>
+        </div>
+    </div>
+
+</div>

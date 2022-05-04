@@ -1,0 +1,47 @@
+<div class="main_content">
+  <div class="container">
+    <div class="banner-wr">
+      <div class="bnn-left">
+        <h3>Cuộc họp video chất lượng.
+          <br> Giờ đây miễn phí cho mọi người
+        </h3>
+        <div class="bnn-action">
+          <button type="button" class="bnn-btn" (click)="createRoom()">Cuộc họp mới</button>
+          <form [formGroup]="createForm" (ngSubmit)="submitJoinRoom()" class="bnn-form">
+            <input formControlName="roomCode" type="text" placeholder="Nhập một mã đường liên kết để tham gia..." class="bnn-input">
+            <button type="submit" class="bnn-btn-text">Tham gia</button>
+          </form>
+        </div>
+      </div>
+      <div class="bnn-right">
+        <img src="./../../../../../assets/client/assets/images/meet.svg" alt="">
+      </div>
+    </div>
+    <div class="hosted">
+      <h3>Phòng bạn đã tạo</h3>
+      <table class="w-full whitespace-no-wrap">
+        <thead
+          class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b border-gray-200 dark:border-gray-700 bg-gray-100 dark:text-gray-400 dark:bg-gray-800">
+          <tr>
+            <td class="px-4 py-3">Mã Phòng</td>
+            <td class="px-4 py-3">Ngày Tạo</td>
+            <td></td>
+          </tr>
+        </thead>
+        <tbody *ngFor="let item of hosted"
+          class="bg-white divide-y divide-gray-100 dark:divide-gray-700 dark:bg-gray-800 text-gray-700 dark:text-gray-400">
+          <tr>
+            <td class="px-4 py-3"><span class="text-sm">{{item.name}}</span></td>
+            <td>{{item.createdDate | date: 'MMM d, y H:mm:ss' : '+0700' }}</td>
+            <td style="text-align: right">
+              <a (click)="deleteRoom(item.id)" class="mr-3" style="cursor: pointer;">x</a>
+              <a (click)="joinRoom(item.name)" class="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-3 py-1 rounded-md text-xs text-white bg-green-500 border border-transparent active:bg-green-600 hover:bg-green-600 focus:ring focus:ring-purple-300">
+                Tham gia
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

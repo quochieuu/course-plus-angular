@@ -1,0 +1,172 @@
+<div class="main-admin">
+    <div class="sidebar  {{ status }}">
+        <div class="logo-details">
+            <!-- <i class='bx bxl-c-plus-plus' ></i> -->
+            <i class='bx bx-menu ico-sidebar' (click)="toggleSidebar()" style="cursor: pointer; color: #0e9f6e;"></i>
+            <span class="logo_name">Elearning</span>
+
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a routerLink="/admin">
+                    <i class='bx bx-grid-alt'></i>
+                    <span class="link_name">Dashboard</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="#">Category</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="iocn-link">
+                    <label for="btn-3">
+                        <i class='bx bx-laptop'></i>
+                        <span class="link_name">Course</span>
+                    </label>
+                    <i class='bx bxs-chevron-down arrow'></i>
+                </div>
+                <input type="checkbox" id="btn-3">
+                <ul class="sub-menu">
+                    <li><a class="link_name" href="#">Course</a></li>
+                    <li><a routerLink="/admin/course-category/index">Course Categories</a></li>
+                    <li><a routerLink="/admin/course/index">All Courses</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="iocn-link">
+                    <label for="btn-31">
+                        <i class='bx bx-news'></i>
+                        <span class="link_name">Blog</span>
+                    </label>
+                    <i class='bx bxs-chevron-down arrow'></i>
+                </div>
+                <input type="checkbox" id="btn-31">
+                <ul class="sub-menu">
+                    <li><a class="link_name" href="#">Blog</a></li>
+                    <li><a routerLink="/admin/blog-category/index">Categories</a></li>
+                    <li><a routerLink="/admin/blog/index">All Blogs</a></li>
+                    <li><a routerLink="/admin/blog/create">Create Blog</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="iocn-link">
+                    <label for="btn-312">
+                        <i class='bx bx-book-alt'></i>
+                        <span class="link_name">Book</span>
+                    </label>
+                    <i class='bx bxs-chevron-down arrow'></i>
+                </div>
+                <input type="checkbox" id="btn-312">
+                <ul class="sub-menu">
+                    <li><a class="link_name" href="#">Book</a></li>
+                    <li><a routerLink="/admin/book-category/index">Categories</a></li>
+                    <li><a routerLink="/admin/book/index">All Books</a></li>
+                </ul>
+            </li>
+            <li>
+              <div class="iocn-link">
+                  <label for="btn-3121">
+                      <i class='bx bx-extension'></i>
+                      <span class="link_name">Quizzes</span>
+                  </label>
+                  <i class='bx bxs-chevron-down arrow'></i>
+              </div>
+              <input type="checkbox" id="btn-3121">
+              <ul class="sub-menu">
+                  <li><a class="link_name" href="#">Book</a></li>
+                  <li><a routerLink="/admin/quiz/index">All Quizzes</a></li>
+                  <li><a routerLink="/admin/book/index">All Books</a></li>
+              </ul>
+          </li>
+          <li>
+            <div class="iocn-link">
+                <label for="btn-3121f">
+                    <i class='bx bx-extension'></i>
+                    <span class="link_name">Forums</span>
+                </label>
+                <i class='bx bxs-chevron-down arrow'></i>
+            </div>
+            <input type="checkbox" id="btn-3121f">
+            <ul class="sub-menu">
+                <li><a class="link_name" href="#">Forums</a></li>
+                <li><a routerLink="/admin/forum-category/index">All Topics</a></li>
+                <li><a routerLink="/admin/forum/index">All Forums</a></li>
+            </ul>
+        </li>
+          <li>
+            <div class="iocn-link">
+                <label for="btn-31211">
+                    <i class='bx bx-user'></i>
+                    <span class="link_name">Users</span>
+                </label>
+                <i class='bx bxs-chevron-down arrow'></i>
+            </div>
+            <input type="checkbox" id="btn-31211">
+            <ul class="sub-menu">
+                <li><a class="link_name" href="#">Users</a></li>
+                <li><a routerLink="/admin/user/index">All User</a></li>
+            </ul>
+          </li>
+          <li>
+            <div class="iocn-link">
+                <label for="btn-312111z">
+                    <i class='bx bx-chat'></i>
+                    <span class="link_name">Chat Bot</span>
+                </label>
+                <i class='bx bxs-chevron-down arrow'></i>
+            </div>
+            <input type="checkbox" id="btn-312111z">
+            <ul class="sub-menu">
+                <li><a class="link_name" href="#">Chat Bot</a></li>
+                <li><a routerLink="/admin/chat-bot/index">List Suggestions</a></li>
+            </ul>
+          </li>
+            <li>
+              <div class="iocn-link">
+                  <label for="btn-312111">
+                      <i class='bx bx-cog'></i>
+                      <span class="link_name">Systems</span>
+                  </label>
+                  <i class='bx bxs-chevron-down arrow'></i>
+              </div>
+              <input type="checkbox" id="btn-312111">
+              <ul class="sub-menu">
+                  <li><a class="link_name" href="#">Systems</a></li>
+                  <li><a routerLink="/admin/systems/index">Banners</a></li>
+              </ul>
+            </li>
+            <li>
+                <div class="profile-details">
+                    <div class="profile-content">
+                        <img src="./../../../assets/profile.jpg" alt="profileImg">
+                    </div>
+                    <div class="name-job">
+                        <div class="profile_name">Root</div>
+                        <div class="job">Administration</div>
+                    </div>
+                    <i class='bx bx-log-out'></i>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="dashboard-main {{ status }}">
+        <nav>
+            <input type="checkbox" id="click">
+            <label for="click" class="menu-btn">
+            <i class="fas fa-bars"></i>
+            </label>
+            <ul>
+               <li><a class="active" href="#">Home</a></li>
+               <li><a href="#">About</a></li>
+               <li><a href="#">Services</a></li>
+               <li><a href="#">Gallery</a></li>
+               <li><a href="#">Feedback</a></li>
+            </ul>
+         </nav>
+         <div class="clear-fix-content"></div>
+        <div class="dcontent">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

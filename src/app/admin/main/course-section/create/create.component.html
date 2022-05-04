@@ -1,0 +1,30 @@
+<h1 class="my-6 text-lg font-bold text-gray-700 dark:text-gray-300">Create Course Section</h1>
+
+<div class="container w-100">
+  <div class="row mt-5">
+    <div class="col-md-6">
+      <form [formGroup]="createForm" (ngSubmit)="onSubmit()" class="hct-form">
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2">Name</label>
+          <input
+            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            type="text" formControlName="name" required>
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2">Description</label>
+          <textarea
+            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            type="text" formControlName="description" required></textarea>
+        </div>
+
+        <div class="mb-4">
+          <button
+            class="rounded-md inline-block align-baseline text-sm text-white bg-green-500 hover:text-blue-800 px-4 py-1"
+            type="submit">Xuất bản</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<a [routerLink]="['/admin/course-section', course.slug]"
+  class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">Back to list</a>

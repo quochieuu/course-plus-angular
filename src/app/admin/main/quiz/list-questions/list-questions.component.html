@@ -1,0 +1,106 @@
+<h1 class="my-6 text-lg font-bold text-gray-700 dark:text-gray-300">Danh sách câu hỏi trắc nghiệm</h1>
+<div class="flex justify-between filter-bar">
+  <div>
+    Items per Page:
+      <select (change)="handlePageSizeChange($event)">
+        <option *ngFor="let size of pageSizes" [ngValue]="size">
+          {{ size }}
+        </option>
+      </select>
+  </div>
+  <div>
+    <input type="text" class="w-96 form-input px-4 py-2 border border-gray-200" placeholder="Nhập từ khóa để tìm kiếm..." (input)="handleSearch($event)">
+  </div>
+  <div>
+    <a [routerLink]="['/admin/quiz/question/create', quizId]" class="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-3 py-1 rounded-md text-xs text-white bg-green-500 border border-transparent active:bg-green-600 hover:bg-green-600 focus:ring focus:ring-purple-300">
+      <i class="bx bx-plus mr-1"></i>Thêm mới
+    </a>
+  </div>
+
+</div>
+
+<div
+    class="w-full overflow-hidden border border-gray-200 dark:border-gray-700 rounded-lg ring-black ring-opacity-5 mb-8 rounded-b-lg">
+    <div class="w-full overflow-x-auto">
+        <table class="w-full whitespace-no-wrap">
+            <thead
+                class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b border-gray-200 dark:border-gray-700 bg-gray-100 dark:text-gray-400 dark:bg-gray-800">
+                <tr>
+                    <td class="px-4 py-3">Question</td>
+                    <td class="px-4 py-3">Score</td>
+                    <!-- <td class="px-4 py-3">Status</td> -->
+                    <td class="px-4 py-3 text-right"></td>
+                </tr>
+            </thead>
+            <tbody *ngFor="let item of questions | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: totalItems }; let i = index"
+                class="bg-white divide-y divide-gray-100 dark:divide-gray-700 dark:bg-gray-800 text-gray-700 dark:text-gray-400">
+                <ng-template #mymodal let-modal>
+                  <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title">Xem chi tiết câu hỏi</h4>
+                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <code [innerHTML]="item.content"></code>
+                    <div *ngFor="let answer of item.questionAnswer ; let j = index">
+                      <ul>
+                        <li>
+                          <i>Phương án {{j + 1}}</i> - {{ answer.content }}
+                          <span *ngIf="answer.isCorrect == true" class="inline-flex px-2 text-xs font-medium leading-5 rounded-full text-green-500 bg-green-100 dark:bg-green-800 dark:text-green-100">
+                            Đáp án đúng
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </ng-template>
+                <tr>
+                    <td class="px-4 py-3"><span class="text-sm"><span [innerHTML]="item.content"></span></span></td>
+                    <td class="px-4 py-3"><span class="text-sm">{{ item.score }}</span></td>
+
+                    <!-- <td class="px-4 py-3">
+                      <span *ngIf="item.isActive === true" class="inline-flex px-2 text-xs font-medium leading-5 rounded-full text-green-500 bg-green-100 dark:bg-green-800 dark:text-green-100">
+                        Active
+                      </span>
+                      <span *ngIf="item.isActive === false" class="inline-flex px-2 text-xs font-medium leading-5 rounded-full text-red-500 bg-red-100 dark:text-red-100 dark:bg-red-800">
+                        InActive
+                      </span>
+                    </td> -->
+                    <td class="px-4 py-3">
+                      <div class="flex justify-end text-right" style="cursor: pointer;">
+                        <a class="tgg-action" (click)="tabToggle(i+10001)" *ngIf="showTab != i+10001">
+                          <i class="bx bx-chevron-down"></i>
+                        </a>
+                        <a class="tgg-action" (click)="tabCancel()" *ngIf="showTab == i+10001">
+                          <i class="bx bx-chevron-up"></i>
+                        </a>
+                      </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="5" class="p-2">
+                    <div class="row-foot d-flex" *ngIf="showTab == i+10001">
+                          <a (click)="open(mymodal)" target="_blank" title="Quản lý chương trình đào tạo"
+                            class="mr-2 align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-3 py-1 rounded-md text-xs text-white bg-green-500 border border-transparent active:bg-green-400 hover:bg-green-600 focus:ring focus:ring-purple-300">
+                            <i class="bx bx-bookmark mr-1"></i>
+                            Xem chi tiết
+                          </a>
+                          <div style="flex: 7;"></div>
+                          <a href="#" class="mr-2 align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-3 py-1 rounded-md text-xs text-white bg-green-600 border border-transparent active:bg-green-600 hover:bg-green-600 focus:ring focus:ring-purple-300">
+                            <i class="bx bx-edit-alt mr-1"></i>
+                            Chỉnh sửa
+                          </a>
+                           <a (click)="delete(item.id)" class="mr-2 align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-3 py-1 rounded-md text-xs text-white bg-red-500 border border-transparent active:bg-green-600 hover:bg-green-600 focus:ring focus:ring-purple-300">
+                            <i class="bx bx-x mr-1"></i>
+                            Xoá
+                          </a>
+                    </div>
+
+                  </td>
+                </tr>
+            </tbody>
+        </table>
+        <pagination-controls (pageChange)="handlePageChange($event)"></pagination-controls>
+    </div>
+</div>

@@ -1,0 +1,108 @@
+<div id="wrapper" class="flex flex-col justify-between h-screen">
+    
+    <!-- header-->
+    <div class="bg-white py-4 shadow dark:bg-gray-800">
+        <div class="max-w-6xl mx-auto">
+
+
+            <div class="flex items-center lg:justify-between justify-around">
+
+                <a routerLink="/">
+                    <img src="./../../../../assets/client/assets/images/logo.png" alt="" class="w-32">
+                </a>
+
+                <div class="capitalize flex font-semibold hidden lg:block my-2 space-x-3 text-center text-sm">
+                    <a routerLink="/login" class="py-3 px-4">Login</a>
+                    <a routerLink="/register" class="bg-purple-500 purple-500 px-6 py-3 rounded-md shadow text-white">Register</a>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+    <!-- Content-->
+    <div>
+
+      <div class="lg:p-12 max-w-xl lg:my-0 my-12 mx-auto p-6 space-y-">
+          <form class="lg:p-10 p-6 space-y-3 relative bg-white shadow-xl rounded-md auth-conf" (ngSubmit)="f.form.valid && onSubmit()"
+          #f="ngForm"
+          novalidate>
+              <h1 class="lg:text-2xl text-xl font-semibold mb-6"> Login </h1>
+
+              <div>
+                  <label class="mb-0" for="username"> Username </label>
+                  <input type="text" id="username" placeholder="Username" class="bg-gray-100 h-12 mt-2 px-3 rounded-md w-full"
+                  name="username" [ngClass]="isLoginFailed==true ? 'err' : ''"
+                  [(ngModel)]="form.userName"
+                   #userName="ngModel">
+                   <div class="err" *ngIf="f.submitted">
+                        <div *ngIf="errorMessage.UserName != undefined || errorMessage.UserName != null">UserName is required</div>
+                    </div>
+              </div>
+              <div>
+                  <label class="mb-0" for="password"> Password </label>
+                  <input type="password" id="password" placeholder="******" class="bg-gray-100 h-12 mt-2 px-3 rounded-md w-full"
+                  name="password" [ngClass]="isLoginFailed==true ? 'err' : ''"
+                  [(ngModel)]="form.password"
+                   minlength="6"
+                   #password="ngModel">
+                   <div class="err" *ngIf="f.submitted">
+                    <div *ngIf="errorMessage.Password != undefined || errorMessage.Password != null">Password is required</div>
+                </div>
+              </div>
+              <span class="err"> {{errorMessage2}} </span>
+
+              <div>
+                  <button type="submit" class="bg-blue-600 font-semibold p-2.5 mt-5 rounded-md text-center text-white w-full">
+                      <img src="./../../../../assets/client/assets/images/download.gif" alt="" class="btn-loading" *ngIf="isLoading == true">
+                      Get Started</button>
+              </div>
+
+              <div class="uk-heading-line uk-text-center py-5"><span> Or, connect with </span></div>
+
+
+              <a href="/login/facebook" class="hidden relative lg:flex items-center justify-start w-full py-3 mt-2 overflow-hidden text-lg font-medium text-white bg-indigo-600 rounded-lg cursor-pointer">
+                  <span class="absolute left-0 flex items-center justify-center w-16 h-full mr-3 fill-current">
+                      <svg viewBox="0 0 24 24" class="left-0 w-8 h-8 ml-1 text-white fill-current" xmlns="http://www.w3.org/2000/svg"><path d="M23.998 12c0-6.628-5.372-12-11.999-12C5.372 0 0 5.372 0 12c0 5.988 4.388 10.952 10.124 11.852v-8.384H7.078v-3.469h3.046V9.356c0-3.008 1.792-4.669 4.532-4.669 1.313 0 2.686.234 2.686.234v2.953H15.83c-1.49 0-1.955.925-1.955 1.874V12h3.328l-.532 3.469h-2.796v8.384c5.736-.9 10.124-5.864 10.124-11.853z"></path></svg>
+                  </span>
+                  <span class="inline-block pl-5 text-base text-center w-full">Signup with Facebook</span>
+              </a>
+
+          
+              <div class="flex items-center space-x-2 justify-center">
+                  <a href="#">
+                      <i name="logo-facebook" class="fa fa-facebook-square p-2 rounded-full text-2xl bg-gray-100 text-blue-600"></i>
+                  </a>
+                  <a href="#">
+                      <i name="logo-twitter" class="fa fa-twitter-square p-2 rounded-full text-2xl bg-gray-100 text-indigo-500"></i>
+                  </a>
+                  <a href="#">
+                      <i name="logo-github" class="fa fa-google p-2 rounded-full text-2xl bg-gray-100 text-red-600"></i>
+                  </a>
+              </div>
+           
+
+
+
+          </form>
+
+      </div>
+  
+    </div>
+    
+    <!-- Footer -->
+    <div class="lg:mb-5 py-3 uk-link-reset">
+        <div class="flex flex-col items-center justify-between lg:flex-row max-w-6xl mx-auto lg:space-y-0 space-y-3">
+            <div class="flex space-x-2 text-gray-700 uppercase">
+                <a href="#"> About</a>
+                <a href="#"> Help</a>
+                <a href="#"> Terms</a>
+                <a href="#"> Privacy</a>
+            </div>
+            <p class="capitalize"> © copyright 2022 by Courseplus</p>
+        </div>
+    </div>
+
+</div>

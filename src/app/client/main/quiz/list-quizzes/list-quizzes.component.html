@@ -1,0 +1,116 @@
+<div class="uk-sticky-placeholder" style="height: 72px; margin: 0px;"></div>
+<!-- Main Contents -->
+<div class="main_content">
+  <div style="background-color: #7798f9; width: 70%; height: 38px; margin-top: -134px; float: right;"></div>
+  <div class="container">
+
+      <div class="text-2xl font-semibold"> Trắc nghiệm mới nhất </div>
+      <div class="lg:flex lg:space-x-12 mt-5">
+
+          <div class="lg:w-2/3 flex-shirink-0">
+
+              <ul class="card divide-y divide-gray-100 sm:m-0 -mx-5">
+                  <li *ngFor="let item of quizzes | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: totalItems }; let i = index">
+                      <div class="flex items-start space-x-5 p-7">
+                          <div class="flex-1">
+                              <a style="cursor: pointer;" (click)="joinTest(item.id)" class="text-lg font-semibold line-clamp-1 mb-1">{{ item.title }}</a>
+                              <p class="text-sm text-gray-400 mb-2"> <span data-href="%40tag-dev.html">Course Plus Academy</span></p>
+                            <p class="leading-6 line-clamp-2 mt-3 quizp">
+                              <span class="date"> {{ item.createdDate | date: 'dd/MM/yyyy' : 'UTC'}} </span>
+                              <span class="level" *ngIf="item.level == 0"> Dễ </span>
+                              <span class="level" *ngIf="item.level == 1"> Bình thường </span>
+                              <span class="level" *ngIf="item.level == 2"> Khó </span>
+                              <span class="attemp">Lượt thi: <b> {{item.attempt}} </b></span>
+                            </p>
+                          </div>
+                          <div class="sm:flex items-center space-x-4 hidden">
+                              <a style="cursor: pointer;" (click)="joinTest(item.id)" class="btnbg bg-blue-600 block py-3 rounded-md text-white text-center text-base font-semibold hover:text-white hover:bg-blue-700"
+                              >Làm bài</a>
+                          </div>
+                      </div>
+                  </li>
+              </ul>
+              <pagination-controls (pageChange)="handlePageChange($event)"></pagination-controls>
+
+          </div>
+
+          <div class="lg:w-1/3 pt-5">
+
+              <div uk-sticky="offset:100">
+
+                  <h2 class="text-xl font-semibold mb-2"> Bảng xếp hạng </h2>
+                  <p> People who started the most discussions on Talks. </p>
+                  <br>
+                  <ul class="space-y-3">
+                      <li>
+                          <div class="flex items-center space-x-3">
+                              <img src="./../../../../../assets/client/assets/images/avatars/avatar-1.jpg" alt="" class="w-8 h-8 rounded-full">
+                              <a href="#" class="font-semibold"> Stella Johnson </a>
+                              <div class="flex items-center space-x-2">
+                                  <i name="chatbubble-ellipses-outline" class="text-lg"></i>
+                                  <span> 137 </span>
+                              </div>
+                          </div>
+                      </li>
+                      <li>
+                          <div class="flex items-center space-x-3">
+                              <img src="./../../../../../assets/client/assets/images/avatars/avatar-2.jpg" alt="" class="w-8 h-8 rounded-full">
+                              <a href="#" class="font-semibold"> Adrian Mohani </a>
+                              <div class="flex items-center space-x-2">
+                                  <i name="chatbubble-ellipses-outline" class="text-lg"></i>
+                                  <span> 14 </span>
+                              </div>
+                          </div>
+                      </li>
+                      <li>
+                          <div class="flex items-center space-x-3">
+                              <img src="./../../../../../assets/client/assets/images/avatars/avatar-3.jpg" alt="" class="w-8 h-8 rounded-full">
+                              <a href="#" class="font-semibold"> Alex Dolgove </a>
+                              <div class="flex items-center space-x-2">
+                                  <i name="chatbubble-ellipses-outline" class="text-lg"></i>
+                                  <span> 257 </span>
+                              </div>
+                          </div>
+                      </li>
+                      <li>
+                          <div class="flex items-center space-x-3">
+                              <img src="./../../../../../assets/client/assets/images/avatars/avatar-1.jpg" alt="" class="w-8 h-8 rounded-full">
+                              <a href="#" class="font-semibold"> Stella Johnson </a>
+                              <div class="flex items-center space-x-2">
+                                  <i name="chatbubble-ellipses-outline" class="text-lg"></i>
+                                  <span> 137 </span>
+                              </div>
+                          </div>
+                      </li>
+                      <li>
+                          <div class="flex items-center space-x-3">
+                              <img src="./../../../../../assets/client/assets/images/avatars/avatar-2.jpg" alt="" class="w-8 h-8 rounded-full">
+                              <a href="#" class="font-semibold"> Adrian Mohani </a>
+                              <div class="flex items-center space-x-2">
+                                  <i name="chatbubble-ellipses-outline" class="text-lg"></i>
+                                  <span> 14 </span>
+                              </div>
+                          </div>
+                      </li>
+                      <li>
+                          <div class="flex items-center space-x-3">
+                              <img src="./../../../../../assets/client/assets/images/avatars/avatar-3.jpg" alt="" class="w-8 h-8 rounded-full">
+                              <a href="#" class="font-semibold"> Alex Dolgove </a>
+                              <div class="flex items-center space-x-2">
+                                  <i name="chatbubble-ellipses-outline" class="text-lg"></i>
+                                  <span> 257 </span>
+                              </div>
+                          </div>
+                      </li>
+                  </ul>
+
+              </div>
+
+          </div>
+
+      </div>
+
+  </div>
+
+
+</div>

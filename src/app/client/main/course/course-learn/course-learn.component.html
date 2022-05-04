@@ -1,0 +1,197 @@
+<div id="wrapper" class="course-watch">
+
+    <!-- sidebar -->
+    <div class="sidebar">
+
+        <!-- slide_menu for mobile -->
+        <span class="btn-close-mobi right-3 left-auto" uk-toggle="target: #wrapper ; cls: is-active"></span>
+
+        <!-- back to home link -->
+        <div class="flex justify-between lg:-ml-1 mt-1 mr-2">
+            <a routerLink="/course/detail/{{course.slug}}" class="flex items-center text-blue-500">
+                <i name="chevron-back-outline" class="md:text-lg text-2xl fa fa-angle-left mr-2"></i>
+                <span class="text-sm md:inline hidden"> Trở lại</span>
+            </a>
+        </div>
+
+        <!-- title -->
+        <h1 class="lg:text-2xl text-lg font-bold mt-2 line-clamp-2"> {{course.name}} </h1>
+
+        <!-- sidebar list -->
+        <div class="sidebar_inner is-watch-2" data-simplebar>
+
+            <!-- <div class="lg:inline hidden">
+                <div class="relative overflow-hidden rounded-md bg-gray-200 h-1 mt-4">
+                    <div class="w-2/4 h-full bg-green-500"></div>
+                </div>
+                <div class="mt-2 mb-3 text-sm border-b pb-3">
+                    <div> 46% Complete</div>
+                    <div> Last activity on April 20, 2021</div>
+                </div>
+            </div> -->
+
+            <div id="curriculum">
+                <div uk-accordion="multiple: true" class="divide-y space-y-3">
+
+                    <div class="uk-open pt-2" *ngFor="let sec of course.sections">
+                        <a class="uk-accordion-title text-md mx-2 font-semibold" href="#">  {{ sec.name }} </a>
+                        <div class="uk-accordion-content mt-3">
+
+                            <ul class="course-curriculum-list">
+                                <li *ngFor="let lec of sec.courseLectures">
+                                    <a (click)="loadLecture(lec.id)">
+                                         {{ lec.name }}
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="mt-5">
+                <h3 class="mb-4 text-lg font-semibold"> Quizzes</h3>
+                <ul>
+                    <li><a href="#"> <i name="timer-outline" class="side-icon"></i>   Taking small eco-friendly steps </a></li>
+                    <li><a href="#"> <i name="timer-outline" class="side-icon"></i>   Making your house eco-friendly </a></li>
+                    <li><a href="#"> <i name="timer-outline" class="side-icon"></i>   Building and renovating for eco-friendly homes </a></li>
+                    <li><a href="#"> <i name="log-in-outline" class="side-icon"></i> Taking small eco-friendly  </a>
+                        <ul>
+                            <li><a href="#"> Making your house </a></li>
+                            <li><a href="#"> Building and renovating </a></li>
+                            <li><a href="#"> Taking small </a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div> -->
+
+        </div>
+
+        <!-- overly for mobile -->
+        <div class="side_overly" uk-toggle="target: #wrapper ; cls: is-collapse is-active"></div>
+
+    </div>
+
+    <!-- Main Contents -->
+    <div class="main_content">
+
+        <div class="relative">
+
+            <ul class=" relative z-10">
+                <li>
+                    <!-- to autoplay video uk-video="automute: true" -->
+                    <div class="embed-video">
+                        <iframe [src]="urlSafe" frameborder="0" allowfullscreen uk-responsive></iframe>
+                    </div>
+
+                </li>
+
+            </ul>
+
+            <div class="bg-gray-200 w-full h-full absolute inset-0 animate-pulse"></div>
+
+        </div>
+
+        <nav class="cd-secondary-nav border-b md:p-0 lg:px-6 bg-white " uk-sticky="cls-active:shadow-sm ; media: @s">
+            <ul uk-switcher="connect: #course-tabs; animation: uk-animation-fade">
+                <li><a href="#" class="lg:px-2">   Overview </a></li>
+                <li><a href="#" class="lg:px-2"> Announcements  </a></li>
+                <li><a href="#" class="lg:px-2"> Faq  </a></li>
+            </ul>
+        </nav>
+
+        <div class="container">
+
+            <div class="max-w-2xl lg:py-6 mx-auto uk-switcher" id="course-tabs">
+
+                <!--  Overview -->
+                <div>
+
+                    <h4 class="text-2xl font-semibold"> Nội dung bài học </h4>
+
+                    <p> {{lecture.name}} </p>
+
+                    <hr class="my-5">
+
+                    <div class="grid lg:grid-cols-3 mt-8 gap-8">
+                        <div>
+                            <h3 class="text-lg font-semibold"> Mô tả </h3>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold"> Nội dung </h3>
+                        </div>
+                        <div class="col-span-2">
+                            <div [innerHTML]="lecture.content">
+                                <!-- {{ course.content }} -->
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+                <!--  Announcements -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-3"> Announcement </h3>
+
+                    <div class="flex items-center gap-x-4 mb-5">
+                        <img src="../assets/images/avatars/avatar-4.jpg" alt="" class="rounded-full shadow w-12 h-12">
+                        <div>
+                            <h4 class="-mb-1 text-base"> Stella Johnson</h4>
+                            <span class="text-sm"> Instructor <span class="text-gray-500"> 1 year ago </span> </span>
+                        </div>
+                    </div>
+
+                    <div [innerHTML]="course.announcement">
+                        <!-- {{ course.content }} -->
+                    </div>
+
+                </div>
+
+                <!-- faq -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-3"> Course Faq </h3>
+                    <ul uk-accordion="multiple: true" class="divide-y space-y-3 space-y-6">
+                        <li class="uk-close" *ngFor="let faq of course.courseFaqs">
+                            <a class="uk-accordion-title font-semibold text-xl mt-4" href="#"> {{faq.title}} </a>
+                            <div class="uk-accordion-content mt-3">
+                                <p> {{faq.content }}</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- This is the modal -->
+    <div id="modal-example" class="lg:ml-80" uk-modal>
+        <div class="uk-modal-dialog uk-modal-body rounded-md shadow-xl">
+
+            <button class="absolute block top-0 right-0 m-6 rounded-full bg-gray-100 leading-4 p-1 text-2xl uk-modal-close" type="button">
+                <i class="icon-feather-x"></i>
+            </button>
+
+            <div class="text-sm mb-2">  Section 2  </div>
+            <h2 class="mb-5 font-semibold text-2xl">  Your First webpage  </h2>
+            <p class="text-base">Do You want to skip the rest of this chapter and chumb to next chapter.</p>
+
+            <div class="text-right  pt-3 mt-3">
+                <a href="#" class="py-2 inline-block px-8 rounded-md hover:bg-gray-200 uk-modal-close"> Stay </a>
+                <a href="#" class="button"> Continue </a>
+            </div>
+        </div>
+    </div>
+
+
+</div>

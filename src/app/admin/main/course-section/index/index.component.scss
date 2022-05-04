@@ -1,0 +1,379 @@
+.text-orange-600 {
+    --text-opacity: 1;
+    color: #d03801;
+    color: rgba(208,56,1,var(--text-opacity));
+}
+
+.bg-orange-100 {
+    --bg-opacity: 1;
+    background-color: #feecdc;
+    background-color: rgba(254,236,220,var(--bg-opacity));
+}
+
+.text-blue-600 {
+    --text-opacity: 1;
+    color: #1c64f2;
+    color: rgba(28,100,242,var(--text-opacity));
+}
+
+.bg-blue-100 {
+    --bg-opacity: 1;
+    background-color: #e1effe;
+    background-color: rgba(225,239,254,var(--bg-opacity));
+}
+
+@media (min-width: 1280px)
+{
+    .xl\:grid-cols-4 {
+        grid-template-columns: repeat(4,minmax(0,1fr));
+    }
+}
+@media (min-width: 768px)
+{
+    .md\:grid-cols-2 {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+    }
+}
+
+.filter-bar {
+    margin-bottom: 10px;
+    background: #f3f4f6;
+    padding: 10px 15px;
+    border-radius: 5px;
+    align-items: center;
+    color: #585858;
+    font-size: .875rem;
+    input {
+        border-radius: 3px;
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
+.filter-btn {
+    border-radius: 3px;
+}
+
+
+.ngx-pagination .current {
+    padding: 0.1875rem 0.625rem;
+    background: #0e9f6e;
+    color: #fefefe;
+    cursor: default;
+    border-radius: 5px;
+}
+
+/* Simple setup for this demo */
+
+.mdl-card {
+  width: 100%;
+  min-height: 0;
+  margin: 10px auto;
+}
+
+.mdl-card__supporting-text {
+  width: 100%;
+  padding: 0;
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step {
+  width: 20%;
+  /* 100 / no_of_steps */
+}
+
+
+/* Begin actual mdl-stepper css styles */
+
+.mdl-stepper-horizontal-alternative {
+  display: table;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step {
+  display: table-cell;
+  position: relative;
+  padding: 24px;
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step:hover,
+.mdl-stepper-horizontal-alternative .mdl-stepper-step:active {
+  background-color: rgb(248 255 253);
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step:active {
+  border-radius: 15% / 75%;
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step:first-child:active {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step:last-child:active {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step:hover .mdl-stepper-circle {
+  background-color: #cecece;
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step:first-child .mdl-stepper-bar-left,
+.mdl-stepper-horizontal-alternative .mdl-stepper-step:last-child .mdl-stepper-bar-right {
+  display: none;
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step .mdl-stepper-circle {
+  width: 24px;
+  height: 24px;
+  margin: 0 auto;
+  background-color: #9E9E9E;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 2em;
+  font-size: 12px;
+  color: white;
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step.active-step .mdl-stepper-circle {
+  background-color: #0e9f6e;
+  box-shadow: 0px 1px 8px 2px #0e9f6e7d;
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step.step-done .mdl-stepper-circle:before {
+  content: "\2714";
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step.step-done .mdl-stepper-circle *,
+.mdl-stepper-horizontal-alternative .mdl-stepper-step.editable-step .mdl-stepper-circle * {
+  display: none;
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step.editable-step .mdl-stepper-circle {
+  -moz-transform: scaleX(-1);
+  /* Gecko */
+  -o-transform: scaleX(-1);
+  /* Opera */
+  -webkit-transform: scaleX(-1);
+  /* Webkit */
+  transform: scaleX(-1);
+  /* Standard */
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step.editable-step .mdl-stepper-circle:before {
+  content: "\270E";
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step .mdl-stepper-title {
+  margin-top: 16px;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step .mdl-stepper-title,
+.mdl-stepper-horizontal-alternative .mdl-stepper-step .mdl-stepper-optional {
+  text-align: center;
+  color: rgba(0, 0, 0, .26);
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step.active-step .mdl-stepper-title {
+  font-weight: 500;
+  color: rgba(0, 0, 0, .87);
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step.active-step.step-done .mdl-stepper-title,
+.mdl-stepper-horizontal-alternative .mdl-stepper-step.active-step.editable-step .mdl-stepper-title {
+  font-weight: 300;
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step .mdl-stepper-optional {
+  font-size: 12px;
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step.active-step .mdl-stepper-optional {
+  color: rgba(0, 0, 0, .54);
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step .mdl-stepper-bar-left,
+.mdl-stepper-horizontal-alternative .mdl-stepper-step .mdl-stepper-bar-right {
+  position: absolute;
+  top: 36px;
+  height: 1px;
+  border-top: 1px solid #bdbdbd38;
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step .mdl-stepper-bar-right {
+  right: 0;
+  left: 50%;
+  margin-left: 20px;
+}
+
+.mdl-stepper-horizontal-alternative .mdl-stepper-step .mdl-stepper-bar-left {
+  left: 0;
+  right: 50%;
+  margin-right: 20px;
+}
+
+.mdl-card.mdl-shadow--2dp {
+  background: white;
+  box-shadow: 4px 3px 0px 0px #cccccc29;
+  border-radius: 8px;
+  border: 1px solid #cccccc4d;
+}
+
+
+.dcontainer {
+  background: white;
+  box-shadow: 4px 3px 0px 0px #cccccc29;
+  border-radius: 8px;
+  border: 1px solid #cccccc4d;
+  padding: 40px;
+  box-sizing: border-box;
+  margin-top: 30px;
+}
+
+
+
+.upimagelabel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  padding: 6px;
+  border: 1px dashed #ccc;
+  cursor: pointer;
+  margin-bottom: -48px!important;
+  margin-top: 27px;
+
+  img {
+    width: 45px;
+    height: auto;
+  }
+
+  .upimagelabel span {
+      font-size: 16px;
+      margin-left: 15px;
+      margin-bottom: 6px;
+  }
+}
+
+
+input#file {
+    cursor: pointer;
+    display: block;
+    opacity: 0;
+}
+
+.invalid-feedback {
+  display: block;
+  color: red;
+  font-weight: 700;
+}
+
+.ctdt-sec {
+  margin: 20px 30px;
+  padding: 15px 20px;
+  border: 1px solid #6a6f73;
+  background-color: #f7f9fa;
+}
+
+.ctdt-sec-main {
+  font-weight: 700;
+}
+
+.ctdt-lec {
+  margin: 15px 30px;
+  padding: 13px 20px;
+  border: 1px solid #6a6f73;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.ctdt-lec {
+  display: flex;
+  align-items: center;
+}
+
+.add-item--icon--2FsmW {
+  position: relative;
+  left: 0;
+  font-size: 12px;
+  font-weight: 700;
+  transition: all 500ms;
+}
+
+.add-item--add-item-toggler--1k-rh:before, .add-item--add-item-toggler--1k-rh:hover:before, .add-item--add-item-toggler--1k-rh:active:before, .add-item--add-item-toggler--1k-rh:focus:before {
+  transition: all 500ms;
+  content: '';
+  position: absolute;
+  right: -11px;
+  top: 2px;
+  height: 21px;
+  width: 21px;
+  background: #fff;
+  border: 1px dashed #6a6f73;
+  border-bottom: none;
+  border-left: none;
+  transform: rotate(35deg) skew(-15deg);
+}
+.add-item--add-item-toggler--1k-rh, .add-item--add-item-toggler--1k-rh:hover, .add-item--add-item-toggler--1k-rh:active, .add-item--add-item-toggler--1k-rh:focus {
+  width: 40px;
+  height: 27px;
+  position: relative;
+  border: 1px dashed #6a6f73;
+  border-right: 0;
+  background: #fff;
+}
+
+button.curriculum-list--add-item--1DK2G.add-item--add-item-toggler--1k-rh.add-item--lecture--2ZWW9.btn.btn-xs.btn-link {
+  margin-left: -40px;
+}
+
+
+a.curriculum-list--add-item--1DK2G.add-item--add-item-toggler--1k-rh.add-item--lecture--2ZWW9.btn.btn-xs.btn-link {
+  margin-left: -40px;
+}
+
+a.curriculum-list--add-item--1DK2G.add-item--add-item-toggler--1k-rh.add-item--lecture--2ZWW9.btn.btn-xs.btn-link i {
+  position: absolute;
+  top: 4px;
+}
+
+
+.prm {
+  margin-left: 5px!important;
+  margin-bottom: 5px!important;
+}
+
+input.sec-live-edit {
+  border: 1px dashed #7d8184;
+  border-radius: 3px;
+  padding: 0 7px;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: auto;
+}
+
+input.sec-live-submit {
+  background: #10b981;
+  color: #fff;
+  font-weight: 500;
+  font-size: 11px;
+  padding: 4px 8px;
+  border: 1px solid #81ffd5;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+input.sec-live-cancel {
+  background: #9d9d9d;
+  color: #fff;
+  font-weight: 500;
+  font-size: 11px;
+  padding: 4px 8px;
+  border: 1px solid #bcbcbc;
+  border-radius: 5px;
+  margin-right: 10px;
+}

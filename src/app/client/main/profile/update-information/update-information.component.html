@@ -1,0 +1,108 @@
+<!-- Main Contents -->
+<div class="main_content">
+    <div class="container">
+
+        <h3 class="text-2xl font-medium mb-5"> Thiết Lập </h3>
+
+        <nav class="cd-secondary-nav border-b md:m-0 -mx-4 nav-small">
+            <ul>
+                <li class="active"><a routerLink="/" class="lg:px-2">Thông tin cá nhân </a></li>
+                <li><a routerLink="/profile/change-password" class="lg:px-2"> Đổi mật khẩu </a></li>
+                <li><a href="#" class="lg:px-2"> Thông tin thanh toán </a></li>
+            </ul>
+        </nav>
+
+        <!-- Basic information -->
+        <div class="grid lg:grid-cols-3 gap-8 md:mt-12">
+            <div>
+                <div uk-sticky="offset:100;bottom:true;media:992">
+                    <h3 class="text-lg mb-2 font-semibold"> Thông tin</h3>
+                    <p> Cập nhật thông tin cơ bản của bạn</p>
+                </div>
+            </div>
+            <div class="bg-white rounded-md lg:shadow-md shadow col-span-2">
+              <form (ngSubmit)="onSubmit()">
+                <div class="grid grid-cols-2 gap-3 lg:p-6 p-4">
+                    <div>
+                        <label for="first-name"> Tên</label>
+                        <input type="text" placeholder="" id="first-name" class="shadow-none with-border" [(ngModel)]="user.firstName" name="firstName">
+                    </div>
+                    <div>
+                        <label for="last-name"> Họ</label>
+                        <input type="text" placeholder="" id="last-name" class="shadow-none with-border" [(ngModel)]="user.lastName" name="lastName">
+                    </div>
+                    <div class="col-span-2">
+                        <label for="email"> Email <span class="text-red-600">*</span></label>
+                        <input type="text" placeholder="" disabled id="email" class="shadow-none with-border" [(ngModel)]="user.email" name="email">
+                    </div>
+                    <div>
+                        <label for="first-name"> Username</label>
+                        <input type="text" disabled id="first-name" class="shadow-none with-border" [(ngModel)]="user.username" name="username">
+                    </div>
+                    <div>
+                        <label for="Location"> Giới tính</label>
+                        <select [(ngModel)]="user.gender" name="gender" class="shadow-none with-border">
+                            <option *ngFor="let gender of genders" [value]="gender.val">{{gender.name}}</option>
+                        </select>
+                    </div>
+                    <div class="col-span-2">
+                        <label for="about">Giới thiệu bản thân</label>
+                        <textarea rows="3"  class="with-border" [(ngModel)]="user.introduction" name="introduction"></textarea>
+                    </div>
+
+                    <!-- Website logo  -->
+                    <!-- <label for="system_info" class="font-medium">Photo  </label>
+                    <div class="col-span-2 flex py-2 space-x-5">
+                        <img src="./../../../../../assets/client/assets/images/avatars/placeholder.png" alt="" class="h-12 rounded-full w-12">
+                        <a href="#" class="border font-medium px-3 py-1.5 rounded-md self-center shadow-sm text-center text-sm">Change</a>
+                    </div> -->
+
+                    <div class="col-span-2">
+                        <label for="Location"> Địa chỉ</label>
+                        <!-- <input type="text" placeholder="" id="location" class="shadow-none with-border" [(ngModel)]="userData.address" name="address"> -->
+                        <select [(ngModel)]="user.address" name="address" class="shadow-none with-border">
+                            <option *ngFor="let province of provinces" [value]="province.name">{{province.name}}</option>
+                        </select>
+                    </div>
+                    <!-- <div>
+                       <label for="working"> Working at</label>
+                       <input type="text" placeholder="" id="working" class="shadow-none with-border">
+                    </div>  -->
+
+                    <button class="flex items-center justify-center h-9 px-6 rounded-md bg-blue-600 text-white"
+                      type="submit">Cập Nhật Tài Khoản</button>
+                </div>
+              </form>
+            </div>
+        </div>
+
+        <!-- Social Links-->
+        <!-- <div class="grid lg:grid-cols-3 gap-8 md:mt-12">
+            <div>
+                <div uk-sticky="offset:100;bottom:true;media:992">
+                    <h3 class="text-lg mb-2 font-semibold"> Social Links</h3>
+                    <p> Lorem ipsum dolor sit amet nibh consectetuer adipiscing elit</p>
+                </div>
+            </div>
+            <div class="bg-white rounded-md lg:shadow-md shadow col-span-2">
+
+                <div class="lg:p-6 p-4 space-y-4">
+                    <div>
+                        <label for="facebook_link">Facebook link</label>
+                        <input type="text" placeholder="" id="facebook_link" class="shadow-none with-border">
+                    </div>
+                    <div>
+                        <label for="twitter_link"> Twitter link </label>
+                        <input type="text" placeholder="" id="twitter_link" class="shadow-none with-border">
+                    </div>
+                    <div>
+                        <label for="linkedin_link"> Linkedin link </label>
+                        <input type="text" placeholder="" id="linkedin_link" class="shadow-none with-border">
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+
+    </div>
+</div>

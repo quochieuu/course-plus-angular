@@ -1,0 +1,78 @@
+<div class="main_content single-topic">
+  <div class="container">
+    <lib-toastify-toast-container [autoClose]="3000"
+              [iconLibrary]="'font-awesome'"
+              ></lib-toastify-toast-container>
+    <div class="col-lg-8i">
+      <div class="main-post">
+        <div class="forum-post-top">
+          <div class="d-flex">
+            <div class="author-avatar bbp-author-link">
+              <img alt="{{question.authorName}}" *ngIf="question.authorName != null"
+                src="{{baseUrl}}/users/avatars/{{question.authorAvatar}}"
+                class="avatar avatar-40 photo" height="40" width="40" loading="lazy">
+            </div>
+            <div class="forum-post-author">
+              <div class="topic-author d-flex mb-1">
+                <a class="bbp-author-link" href="#"> {{question.authorName}} </a>
+              </div>
+              <div class="forum-author-meta meta">
+                <a href="#" title="{{question.createdDate | date: 'MMM d, y H:mm:ss' : '+0700'}}"> {{question.createdDate | date: 'MMM d, y H:mm:ss' : '+0700'}} </a>
+              </div>
+            </div>
+          </div>
+          <div class="action-button-container"></div>
+        </div>
+        <div class="q-title">
+          <span class="question-icon" title="Question" style="opacity: 0;">Q:</span>
+          <h1 >{{ question.name }}</h1>
+        </div>
+        <div class="forum-post-content">
+          <div class="content" [innerHTML]="question.content">
+          </div>
+        </div>
+      </div>
+      <div id="topic-5245-replies" class="all-answers">
+        <div class="top-bar d-flex justify-content-between mb-4">
+          <h5 class="title"> Các câu trả lời</h5>
+        </div>
+        <div *ngFor="let answer of answers"
+        class="forum-comment loop-item-0 user-id-2 bbp-parent-forum-4996 bbp-parent-topic-5245 bbp-reply-position-1 odd  post-7564 reply type-reply status-publish hentry no-post-thumbnail">
+          <div class="forum-post-top">
+            <div class="d-flex">
+              <a href="#" title="View Demo's profile"
+                class="bbp-author-link"><span class="bbp-author-avatar"><img alt="{{answer.authorName}}"
+                    src="{{baseUrl}}/users/avatars/{{answer.authorAvatar}}"
+                    class="avatar avatar-80 photo" height="80" width="80" loading="lazy"></span></a>
+              <div class="forum-post-author topic-author">
+                <a href="#" title="{{answer.authorName}}"
+                  class="bbp-author-link"><span class="bbp-author-name">{{answer.authorName}}</span></a>
+
+              </div>
+            </div>
+            <div class="forum-author-meta meta">
+              <a class="date-meta" href="#"
+                title="{{answer.createdDate | date: 'MMM d, y H:mm:ss' : '+0700'}}">
+                {{answer.createdDate | date: 'MMM d, y H:mm:ss' : '+0700'}} </a>
+                <a (click)="deleteAnswer(answer.answerId)" *ngIf="user.userId === answer.authorId && isLogin == true" style="color: red; cursor: pointer;">Xoá</a>
+            </div>
+          </div>
+          <div class="comment-content mt-3" [innerHTML]="answer.content">
+          </div>
+        </div>
+      </div>
+      <div class="bbp-no-reply">
+        <div class="bbp-template-notice" *ngIf="!isLogin">
+          <ul>
+            <li>Bạn cần phải đăng nhập để tham gia phản hồi.</li>
+          </ul>
+        </div>
+        <form [formGroup]="createForm" (ngSubmit)="onSubmit()" *ngIf="isLogin">
+            <input type="hidden" formControlName="forumId" [(ngModel)]="question.id">
+            <angular-editor formControlName="content" [config]="editorConfig"></angular-editor>
+            <button type="submit" name="user-submit" class="button submit user-submit mt-3">Xuất bản</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

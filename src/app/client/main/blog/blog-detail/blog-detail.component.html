@@ -1,0 +1,198 @@
+<!-- Main Contents -->
+<div class="main_content">
+    <div class="container p-0">
+
+        <div class="lg:flex lg:space-x-4 lg:-mx-4">
+
+            <div class="lg:w-9/12 lg:space-y-6">
+
+                <div class="tube-card">
+
+                    <div class="h-44 mb-4 md:h-72 overflow-hidden relative rounded-t-lg w-full">
+                        <img src="{{baseUrl}}/blogs/images/{{item.urlImage}}" alt="" class="w-full h-full absolute inset-0 object-cover">
+                    </div>
+
+                    <div class="md:p-6 p-4">
+
+                        <h1 class="lg:text-2xl text-xl font-semibold mb-6"> {{item.title}} </h1>
+
+                        <div class="flex items-center space-x-3 my-3 pb-4 border-b">
+                            <img src="'./../../../../../assets/client/assets/images/avatars/avatar-2.jpg" alt="" class="w-10 rounded-full">
+                            <div>
+                                <div class="text-base font-semibold"> CoursePlus Academy </div>
+                                <div class="text-xs"> Published on {{ item.createdDate | date: 'dd/MM/yyyy' : 'UTC' }}</div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <div [innerHTML]="item.content"></div>
+                        </div>
+
+
+                        <div class="relative">
+                            <a href="#" class="mt-3 inline-flex items-center space-x-3">
+                                <i name="share-social-outline" class="fa fa-share-alt p-2 rounded-md text-lg bg-gray-200"></i>
+                                <div> Intersting?  <span class="text-blue-600">  Share it </span> </div>
+                             </a>
+
+                            <div class="bg-white w-96 shadow-md hidden mx-auto p-2 mt-12 rounded-md text-gray-500 border"
+                               uk-drop="mode: hover;pos: right-center;animation: uk-animation-slide-right-small; offset:15">
+
+                               <div class="grid grid-flow-col text-sm w-full">
+                                <a href="#" class="p-2 text-center hover:bg-gray-100 rounded-md text-sm space-y-1"> <i name="logo-facebook" class="fa fa-facebook text-4xl"></i> <div> Facebook </div> </a>
+                                <a href="#" class="p-2 text-center hover:bg-gray-100 rounded-md text-sm space-y-1"> <i name="logo-facebook" class="fa fa-facebook text-4xl"></i> <div> Facebook </div> </a>
+                                <a href="#" class="p-2 text-center hover:bg-gray-100 rounded-md text-sm space-y-1"> <i name="logo-google" class="fa fa-facebook text-4xl"></i> <div> Facebook </div> </a>
+                                <a href="#" class="p-2  text-center hover:bg-gray-100 rounded-md text-sm space-y-1"> <i name="logo-twitter" class="fa fa-facebook text-4xl"></i> <div> Facebook </div> </a>
+                               </div>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+
+                <!-- related articles -->
+                <div class="tube-card md:p-6 p-3 relative">
+
+                    <h1 class="block text-xl font-semibold"> Bài viết liên quan </h1>
+
+                    <div class="relative" uk-slider="finite: true">
+
+                        <div class="uk-slider-container px-1 py-3">
+                            <ul class="uk-slider-items uk-child-width-1-3@m uk-child-width-1-2@s uk-child-width-1-2 uk-grid-small uk-grid">
+                              <li *ngFor="let blog of topBlogs">
+                                  <div>
+                                      <a [routerLink]="['/blog/detail', blog.id]" class="w-full md:h-32 h-28 overflow-hidden rounded-lg relative block">
+                                          <img src="{{baseUrl}}/blogs/images/{{blog.urlImage}}" alt="{{ blog.title }}" class="w-full h-full absolute inset-0 object-cover">
+                                      </a>
+                                      <div class="pt-3">
+                                          <a [routerLink]="['/blog/detail', blog.id]" class="font-semibold line-clamp-2"> {{ blog.title }}</a>
+                                          <div class="pt-2">
+                                              <p class="text-sm"> CoursePlus Academy</p>
+                                              <div class="flex space-x-2 items-center text-xs">
+                                                  <div>  {{ blog.createdDate | date: 'dd/MM/yyyy' : 'UTC' }} </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                </li>
+                            </ul>
+
+                            <a class="absolute bg-white top-16 flex items-center justify-center p-2 -left-4 rounded-full shadow-md text-xl w-9 z-10 dark:bg-gray-800 dark:text-white fa fa-angle-left" href="#" uk-slider-item="previous">  <i name="chevron-back-outline"></i> </a>
+                            <a class="absolute bg-white top-16 flex items-center justify-center p-2 -right-4 rounded-full shadow-md text-xl w-9 z-10 dark:bg-gray-800 dark:text-white fa fa-angle-right" href="#" uk-slider-item="next"> <i name="chevron-forward-outline"></i></a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="tube-card p-6">
+
+                    <h1 class="block text-xl font-semibold mb-6"> Bình luận (12) </h1>
+
+                    <div class="space-y-5">
+
+                        <div class="flex gap-x-4 relative rounded-md">
+                            <img src="'./../../../../../assets/client/assets/images/avatars/avatar-4.jpg" alt="" class="rounded-full shadow w-12 h-12">
+                            <a href="#" class="bg-gray-100 py-1.5 px-4 rounded-full absolute right-5 top-0">Replay</a>
+                            <div>
+                                <h4 class="text-base m-0 font-semibold"> Stella Johnson</h4>
+                                <span class="text-gray-700 text-sm">10th, April 2021</span>
+                                <p class="mt-3 md:ml-0 -ml-16">
+                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ut laoreet dolore
+                                    magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
+                                    ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+                                </p>
+
+                            </div>
+                        </div>
+
+                        <div class="flex gap-x-4 relative rounded-md">
+                            <a href="#" class="bg-gray-100 py-1.5 px-4 rounded-full absolute right-5 top-0">Replay</a>
+                            <img src="'./../../../../../assets/client/assets/images/avatars/avatar-3.jpg" alt="" class="rounded-full shadow w-12 h-12">
+                            <div>
+                                <h4 class="text-base m-0 font-semibold"> Alex Dolgove</h4>
+                                <span class="text-gray-700 text-sm"> 14th, April 2021 </span>
+                                <p class="mt-3 md:ml-0 -ml-16">
+                                    elit, sed diam ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim ipsum dolor sit
+                                    amet, consectetuer adipiscing elit, sed diam ut laoreet dolore
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-x-4 relative rounded-md lg:ml-16">
+                            <a href="#" class="bg-gray-100 py-1.5 px-4 rounded-full absolute right-5 top-0">Replay</a>
+                            <img src="'./../../../../../assets/client/assets/images/avatars/avatar-1.jpg" alt="" class="rounded-full shadow w-12 h-12">
+                            <div>
+                                <h4 class="text-base m-0 font-semibold"> Stella Johnson</h4>
+                                <span class="text-gray-700 text-sm"> 13th, May 2021 </span>
+                                <p class="mt-3 md:ml-0 -ml-16">
+                                    elit, sed diam ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim ipsum dolor sit
+                                    amet, consectetuer adipiscing elit, sed diam ut laoreet dolore
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="flex justify-center mt-9">
+                        <a href="#" class="bg-gray-50 border hover:bg-gray-100 px-4 py-1.5 rounded-full text-sm">More Comments ..</a>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!--  Sidebar  -->
+            <div class="lg:w-80 w-full mt-4 lg:mt-0">
+
+                <div class="space-y-5" uk-sticky="offset:22; bottom:true ; top:30 ; animation: uk-animation-slide-top-small">
+
+                    <div class="tube-card p-6">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <h4 class="text-lg -mb-0.5 font-semibold"> Bài viết mới nhất </h4>
+                            </div>
+                            <a href="#" class="text-blue-600"> <i name="refresh" class="-mt-0.5 -mr-2 hover:bg-gray-100 p-1.5 rounded-full text-lg md hydrated" role="img" aria-label="refresh"></i> </a>
+                        </div>
+                        <ul>
+                          <li *ngFor="let blog of topBlogs">
+                            <a [routerLink]="['/blog/detail', blog.id]" class="hover:bg-gray-50 rounded-md p-2 -mx-2 block">
+                                <h3 class="font-medium line-clamp-2"> {{ blog.title }} </h3>
+                                <div class="flex items-center my-auto text-xs space-x-1.5">
+                                  <div> {{ blog.createdDate | date: 'dd/MM/yyyy' : 'UTC' }}</div>
+                               </div>
+                            </a>
+                        </li>
+                        </ul>
+                        <a href="#" class="hover:bg-gray-100 -mb-2 mt-0.5 h-8 flex items-center justify-center rounded-md text-blue-400 text-sm">
+                            Xem tất cả
+                        </a>
+                    </div>
+
+                    <!-- <div class="mt-6">
+                        <h4 class="text-lg mb-2 font-semibold"> Tags </h4>
+                        <div class="flex flex-wrap font-medium gap-x-2 gap-y-3">
+                            <a href="#" class="bg-gray-200 py-1.5 px-4 rounded-full text-sm"> JavaScript</a>
+                            <a href="#" class="bg-gray-200 py-1.5 px-4 rounded-full text-sm"> Angular</a>
+                            <a href="#" class="bg-gray-200 py-1.5 px-4 rounded-full text-sm"> Design</a>
+                            <a href="#" class="bg-gray-200 py-1.5 px-4 rounded-full text-sm"> Photography</a>
+                            <a href="#" class="bg-gray-200 py-1.5 px-4 rounded-full text-sm"> Technolgy</a>
+                            <a href="#" class="bg-gray-200 py-1.5 px-4 rounded-full text-sm"> Music</a>
+                        </div>
+                    </div> -->
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

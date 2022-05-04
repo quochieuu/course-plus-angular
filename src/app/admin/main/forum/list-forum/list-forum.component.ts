@@ -1,0 +1,100 @@
+import { ForumService } from './../../../../shared/services/forum.service';
+import { Router } from '@angular/router';
+import { Component, OnInit, NgZone } from '@angular/core';
+import Swal from 'sweetalert2';
+
+@Component({
+  selector: 'app-list-forum',
+  templateUrl: './list-forum.component.html',
+  styleUrls: [
+    './../../../../../assets/client/assets/css/tailwind.css',
+    './list-forum.component.scss']
+})
+export class ListForumComponent implements OnInit {
+
+  forums: any = [];
+  totalItems: any;
+  p: number = 1;
+  pageSize = 10;
+  pageSizes = [10, 15, 20];
+  query: string = '';
+
+  constructor(
+    private router: Router,
+    private ngZone: NgZone,
+    public forumService: ForumService
+  ) {}
+
+  ngOnInit(): void {
+    this.getPage(this.p, this.pageSize, this.query);
+  }
+
+  handlePageChange(event: number): void {
+    this.p = event;
+    this.getPage(this.p, this.pageSize, this.query);
+  }
+
+  handlePageSizeChange(event: any) {
+    this.pageSize = event.target.value;
+    this.p = 1;
+    this.getPage(this.p, event.target.value, this.query);
+    this.handlePageChange(this.p);
+  }
+
+  handleSearch(ev: any) {
+    this.query = ev.target.value;
+    this.getPage(this.p, this.pageSize, ev.target.value);
+  }
+
+  getPage(p: number, pageSize: number, query: string) {
+    this.forumService
+      .getForumsPaging(p, pageSize, query)
+      .subscribe((data: any) => {
+        console.log(data);
+        this.forums = data.items;
+        this.totalItems = data.totalRecords;
+      });
+  }
+
+  deleteForum(id: string): void {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton:
+          'btn btn-success',
+        cancelButton:
+          'btn btn-default',
+      },
+      buttonsStyling: false,
+    });
+
+    swalWithBootstrapButtons
+      .fire({
+        text: 'Xác nhận xóa forums?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Xác nhận',
+        cancelButtonText: 'Hủy',
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          this.getPage(this.p, this.pageSize, this.query);
+
+          this.forumService.deleteForum(id).subscribe((res) => {
+            this.forums = this.forums.filter(
+              (item: { id: string }) => item.id !== id
+            );
+          });
+          this.getPage(this.p, this.pageSize, this.query);
+          this.getPage(this.p, this.pageSize, this.query);
+          this.getPage(this.p, this.pageSize, this.query);
+          this.getPage(this.p, this.pageSize, this.query);
+
+          swalWithBootstrapButtons.fire('Xóa thành công!');
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          swalWithBootstrapButtons.fire('Hủy thành công!');
+        }
+      });
+  }
+
+}

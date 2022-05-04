@@ -1,0 +1,13 @@
+.sidebar {
+    margin-top: 72px!important;
+}
+
+.uk-accordion-title::before {
+    font-family: "FontAwesome";
+    content: "\f107";
+}
+
+.uk-open > .uk-accordion-title::before {
+    font-family: "FontAwesome";
+    content: "\f106";
+}

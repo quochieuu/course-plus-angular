@@ -1,0 +1,96 @@
+<div class="uk-sticky-placeholder" style="height: 72px; margin: 0px;"></div>
+<!-- Main Contents -->
+<div class="main_content">
+  <div style="background-color: #7798f9; width: 70%; height: 38px; margin-top: -134px; float: right;"></div>
+    <div class="container">
+
+        <div class="text-2xl font-semibold"> Tin tức </div>
+        <!-- <nav class="cd-secondary-nav border-b md:m-0 nav-small">
+            <ul>
+                <li class="active"><a href="#" class="lg:px-2"> Suggestions </a></li>
+                <li><a href="#" class="lg:px-2"> Mobile App </a></li>
+                <li><a href="#" class="lg:px-2"> JavaScript </a></li>
+                <li><a href="#" class="lg:px-2"> Softwares </a></li>
+                <li><a href="#" class="lg:px-2"> Drawing </a></li>
+            </ul>
+        </nav> -->
+
+        <div class="lg:flex lg:space-x-4 lg:-mx-4 mt-6">
+
+            <div class="lg:w-10/12">
+                <div class="divide-y tube-card px-6 md:m-0 -mx-5">
+
+                    <div class="md:flex md:space-x-6 py-3" *ngFor="let blog of blogs">
+                        <a [routerLink]="['/blog/detail', blog.id]" title="{{ blog.title }}">
+                            <div class="md:w-56 w-full h-36 overflow-hidden rounded-lg relative shadow-sm">
+                                 <img src="{{baseUrl}}/blogs/images/{{blog.urlImage}}" alt="{{ blog.title }}" class="w-full h-full absolute inset-0 object-cover">
+                                 <!-- <div class="absolute bg-blue-100 font-semibold px-2.5 py-1 rounded-full text-blue-500 text-xs top-2.5 left-2.5">
+                                    {{ blog.title }}
+                                 </div> -->
+                            </div>
+                        </a>
+                        <div class="flex-1 md:pt-0 pt-1">
+
+                            <a [routerLink]="['/blog/detail', blog.id]" class="text-lg font-semibold line-clamp-2 leading-8">  {{ blog.title }}</a>
+                            <p class="line-clamp-2"> {{ blog.description }} </p>
+
+                            <div class="pt-2 text-sm">
+                                <div class="ml-0 pl-0">
+                                    <div> {{ blog.createdDate | date: 'dd/MM/yyyy' : 'UTC' }} </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <!--  Sidebar  -->
+            <div class="lg:w-80 w-full">
+
+                <div class="space-y-5" uk-sticky="offset:22; bottom:true ; top:30 ; animation: uk-animation-slide-top-small">
+
+                    <div class="tube-card p-6">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <h4 class="text-lg -mb-0.5 font-semibold"> Bài viết mới nhất </h4>
+                            </div>
+                            <a href="#" class="text-blue-600"> <i name="refresh" class="-mt-0.5 -mr-2 hover:bg-gray-100 p-1.5 rounded-full text-lg md hydrated" role="img" aria-label="refresh"></i> </a>
+                        </div>
+                        <ul>
+                            <li *ngFor="let blog of topBlogs">
+                                <a [routerLink]="['/blog/detail', blog.id]" class="hover:bg-gray-50 rounded-md p-2 -mx-2 block">
+                                    <h3 class="font-medium line-clamp-2"> {{ blog.title }} </h3>
+                                    <div class="flex items-center my-auto text-xs space-x-1.5">
+                                      <div> {{ blog.createdDate | date: 'dd/MM/yyyy' : 'UTC' }}</div>
+                                   </div>
+                                </a>
+                            </li>
+                        </ul>
+                        <a href="#" class="hover:bg-gray-100 -mb-2 mt-0.5 h-8 flex items-center justify-center rounded-md text-blue-400 text-sm">
+                            Xem tất cả
+                        </a>
+                    </div>
+
+                    <!-- <div class="mt-6">
+                        <h4 class="text-lg mb-2 font-semibold"> Tags </h4>
+                        <div class="flex flex-wrap font-medium gap-x-2 gap-y-3">
+                            <a href="#" class="bg-gray-200 py-1.5 px-4 rounded-full text-sm"> JavaScript</a>
+                            <a href="#" class="bg-gray-200 py-1.5 px-4 rounded-full text-sm"> Angular</a>
+                            <a href="#" class="bg-gray-200 py-1.5 px-4 rounded-full text-sm"> Design</a>
+                            <a href="#" class="bg-gray-200 py-1.5 px-4 rounded-full text-sm"> Photography</a>
+                            <a href="#" class="bg-gray-200 py-1.5 px-4 rounded-full text-sm"> Technolgy</a>
+                            <a href="#" class="bg-gray-200 py-1.5 px-4 rounded-full text-sm"> Music</a>
+                        </div>
+                    </div> -->
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+</div>

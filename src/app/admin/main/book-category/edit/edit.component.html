@@ -1,0 +1,24 @@
+<h1 class="my-6 text-lg font-bold text-gray-700 dark:text-gray-300">Update Boook Category</h1>
+
+<div class="container w-100">
+    <div class="row mt-5">
+    <div class="col-md-6">
+        <form (ngSubmit)="onSubmit()" class="hct-form">
+          <div class="form-group">
+            <label class="block text-gray-700 text-sm font-bold mb-2">Name</label>
+            <input class="mb-3 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" [(ngModel)]="item.name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label class="block text-gray-700 text-sm font-bold mb-2">Description</label>
+            <input class="mb-3 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" [(ngModel)]="item.description" name="description" required>
+          </div>
+  
+          <div class="form-group">
+            <button class="rounded-md inline-block align-baseline text-sm text-white bg-green-500 hover:text-blue-800 px-4 py-1" type="submit">Update</button>
+          </div>
+        </form>
+    </div>
+  </div>
+  </div>
+  
+  <a routerLink="/admin/book-category/index" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">Back to list</a>

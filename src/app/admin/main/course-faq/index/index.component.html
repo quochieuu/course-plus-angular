@@ -1,0 +1,138 @@
+<div class="mdl-stepper-horizontal-alternative">
+  <div class="mdl-stepper-step step-done">
+    <div class="mdl-stepper-circle"><span>1</span></div>
+    <div class="mdl-stepper-title">Thêm mới khoá học</div>
+    <div class="mdl-stepper-bar-left"></div>
+    <div class="mdl-stepper-bar-right"></div>
+  </div>
+  <div class="mdl-stepper-step step-done">
+    <div class="mdl-stepper-circle"><span>2</span></div>
+    <div class="mdl-stepper-title">Quản lý Chương Trình Đào Tạo</div>
+    <div class="mdl-stepper-bar-left"></div>
+    <div class="mdl-stepper-bar-right"></div>
+  </div>
+  <div class="mdl-stepper-step step-done">
+    <div class="mdl-stepper-circle"><span>3</span></div>
+    <div class="mdl-stepper-title">Thêm các bài học</div>
+    <div class="mdl-stepper-bar-left"></div>
+    <div class="mdl-stepper-bar-right"></div>
+  </div>
+  <div class="mdl-stepper-step active-step">
+    <div class="mdl-stepper-circle"><span>4</span></div>
+    <div class="mdl-stepper-title">Thêm các FAQS</div>
+    <div class="mdl-stepper-bar-left"></div>
+    <div class="mdl-stepper-bar-right"></div>
+  </div>
+  <div class="mdl-stepper-step">
+    <div class="mdl-stepper-circle"><span>5</span></div>
+    <div class="mdl-stepper-title">Thêm các bài kiểm tra</div>
+    <div class="mdl-stepper-bar-left"></div>
+    <div class="mdl-stepper-bar-right"></div>
+  </div>
+</div>
+
+<!-- <h1 class="my-6 text-lg font-bold text-gray-700 dark:text-gray-300">{{course.name}}</h1> -->
+
+<div class="flex justify-between mb-2">
+    <div>
+      <h4 class="text-lg font-bold text-gray-400 dark:text-gray-300">Danh sách FAQs</h4>
+      <small>Khoá học: <b>{{course.name}}</b> </small>
+    </div>
+  <div>
+    <a (click)="tabToggle(-1)" class="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-3 py-1 rounded-md text-xs text-white bg-green-500 border border-transparent active:bg-green-600 hover:bg-green-600 focus:ring focus:ring-purple-300">
+      Thêm mới
+    </a>
+  </div>
+
+</div>
+
+<div class="faqs-wrapper">
+  <div class="faq-item" *ngIf="isHide == -1">
+    <h5 class="mb-3"> <b>Thêm mới FAQ</b> </h5>
+
+    <!-- --- (form) Thêm mới Faq ---  -->
+    <form [formGroup]="createForm" (ngSubmit)="onSubmitNewFaq()">
+      <input type="hidden" formControlName="courseId" [(ngModel)]="courseId">
+      <div class="faq-title">
+        <input type="text" class="faq-live-edit-title" formControlName="title" placeholder="Nhập tiêu đề...">
+      </div>
+      <div class="faq-content">
+        <p>
+          <textarea class="faq-live-edit-content" formControlName="content">Nhập nội dung...</textarea>
+        </p>
+      </div>
+      <button
+        class="mt-2 rounded-md inline-block align-baseline text-sm text-white bg-green-500 hover:text-blue-800 px-4 py-2 mr-2"
+        type="submit">Thêm mới</button>
+      <button (click)="tabCancel()" type="button"
+        class="mt-2 rounded-md inline-block align-baseline text-sm text-white bg-slate-600 hover:text-blue-800 px-4 py-2"
+        style="background-color: #ccc;" type="button">Huỷ</button>
+    </form>
+    <!-- --- (end form) Thêm mới Faq ---  -->
+
+  </div>
+  <div class="faq-item" *ngFor="let item of item; let i = index">
+    <div class="d-flex">
+      <h5> <b>FAQ {{ i + 1 }}:</b> </h5>
+      <div style="flex: 7;"></div>
+      <a (click)="tabToggle(i+1)" *ngIf="isHide != (i+1)">
+        <div class="p-2 cursor-pointer text-gray-400 hover:text-red-600">
+          <p data-tip="true" data-for="delete" currentitem="false">
+            <i class="bx bx-edit-alt" style="font-size: 22px; color: #000;"></i>
+          </p>
+        </div>
+      </a>
+      <a (click)="delete(item.id)">
+        <div class="p-2 cursor-pointer text-gray-400 hover:text-red-600">
+          <p data-tip="true" data-for="delete" currentitem="false">
+            <i class="bx bx-x" style="font-size: 22px; color: #000;"></i>
+          </p>
+        </div>
+      </a>
+      <a (click)="tabToggle(i+10001)" *ngIf="showTab != i+10001">
+        <div class="p-2 cursor-pointer text-gray-400 hover:text-red-600">
+          <p data-tip="true" data-for="delete" currentitem="false">
+            <i class="bx bx-chevron-down" style="font-size: 22px; color: #000;"></i>
+          </p>
+        </div>
+      </a>
+      <a (click)="tabCancel()" *ngIf="showTab == i+10001">
+        <div class="p-2 cursor-pointer text-gray-400 hover:text-red-600">
+          <p data-tip="true" data-for="delete" currentitem="false">
+            <i class="bx bx-chevron-up" style="font-size: 22px; color: #000;"></i>
+          </p>
+        </div>
+      </a>
+    </div>
+
+    <!-- -- (form) update faq item --   -->
+    <form [formGroup]="updateForm" (ngSubmit)="onSubmitUpdateFaq(item.id)">
+      <input type="hidden" formControlName="courseId" [(ngModel)]="courseId">
+      <div class="faq-title">
+        <p *ngIf="isHide != (i+1)">{{item.title}}</p>
+        <input type="text" [(ngModel)]="item.title" formControlName="title" class="faq-live-edit-title" *ngIf="isHide == (i+1)">
+      </div>
+      <div class="faq-content" *ngIf="showTab != i+10001">
+        <p>
+          <span *ngIf="(isHide != (i+1))">{{item.content}}</span>
+
+          <br>
+          <textarea [(ngModel)]="item.content" formControlName="content" class="faq-live-edit-content" *ngIf="isHide == (i+1)"></textarea>
+        </p>
+      </div>
+      <button *ngIf="isHide == (i+1)"
+        class="mt-2 rounded-md inline-block align-baseline text-sm text-white bg-green-500 hover:text-blue-800 px-4 py-2 mr-2"
+        type="submit">Cập nhật</button>
+      <button (click)="tabCancel()" type="button" *ngIf="isHide == (i+1)"
+        class="mt-2 rounded-md inline-block align-baseline text-sm text-white bg-slate-600 hover:text-blue-800 px-4 py-2"
+        style="background-color: #ccc;" type="button">Huỷ</button>
+    </form>
+    <!-- -- (end form) update faq item --   -->
+
+  </div>
+
+</div>
+
+
+<a routerLink="/admin/course/index"
+  class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">Go to list courses</a>

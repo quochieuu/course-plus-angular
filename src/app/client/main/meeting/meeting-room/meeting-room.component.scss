@@ -1,0 +1,32 @@
+video {
+  width: 100%;
+  background: grey;
+}
+
+p.video-description {
+  position: absolute;
+  top: 0px;
+  left: 10px;
+}
+
+button {
+  margin: 1em;
+}
+
+.main_content {
+  margin: 0%;
+  width: 100%;
+}
+
+.containerz {
+  margin-left: 310px;
+}
+
+#jitsi-iframe iframe {
+  width: 100%!important;
+  height: 100vh!important;
+}
+
+.watermark.leftwatermark {
+  display: none!important;
+}

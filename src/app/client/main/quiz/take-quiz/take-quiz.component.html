@@ -1,0 +1,63 @@
+<div class="uk-sticky-placeholder" style="height: 72px; margin: 0px;"></div>
+<!-- Main Contents -->
+<div class="main_content">
+  <div style="background-color: #7798f9; width: 70%; height: 38px; margin-top: -134px; float: right;"></div>
+  <div class="container">
+    <div class="text-2xl font-semibold"> Làm bài trắc nghiệm </div>
+
+    <div class="lg:flex lg:space-x-12 mt-5">
+      <div class="lg:w-2/3 flex-shirink-0">
+        <div class="quiz">
+
+          <div class="quiz-item" *ngFor="let item of questions; let i = index" id="{{item.questionId}}">
+            <h4 class="mb-3"><b>Câu {{ i + 1 }}:</b></h4>
+            <h2 class="quiz-question" [innerHTML]="item.content"></h2>
+            <ul>
+              <li class="quiz-answer" *ngFor="let answer of item.questionAnswer; let i = index">
+                <input type="radio" [checked]="checkedAnswer(takenId, item.questionId, answer.id) === true" (change)="chooseAnswer(takenId, item.questionId, answer.id, true)" value="{{answer.id}}" name="{{item.questionId}}">
+                <span *ngIf="i == 0"><b class="mr-2">A.</b> <label for="{{item.answerId}}" [innerHTML]="answer.content"> </label></span>
+                <span *ngIf="i == 1"><b class="mr-2">B.</b> <label for="{{item.answerId}}" [innerHTML]="answer.content"> </label></span>
+                <span *ngIf="i == 2"><b class="mr-2">C.</b> <label for="{{item.answerId}}" [innerHTML]="answer.content"> </label></span>
+                <span *ngIf="i == 3"><b class="mr-2">D.</b> <label for="{{item.answerId}}" [innerHTML]="answer.content"> </label></span>
+                <span *ngIf="i == 4"><b class="mr-2">E.</b> <label for="{{item.answerId}}" [innerHTML]="answer.content"> </label></span>
+                <span *ngIf="i == 5"><b class="mr-2">F.</b> <label for="{{item.answerId}}" [innerHTML]="answer.content"> </label></span>
+                <span *ngIf="i == 6"><b class="mr-2">G.</b> <label for="{{item.answerId}}" [innerHTML]="answer.content"> </label></span>
+                <span *ngIf="i == 7"><b class="mr-2">H.</b> <label for="{{item.answerId}}" [innerHTML]="answer.content"> </label></span>
+                <span *ngIf="i == 8"><b class="mr-2">I.</b> <label for="{{item.answerId}}" [innerHTML]="answer.content"> </label></span>
+                <span *ngIf="i == 9"><b class="mr-2">J.</b> <label for="{{item.answerId}}" [innerHTML]="answer.content"> </label></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="lg:w-1/3 pt-5" >
+        <div class="question-table">
+          <div id="fix-question-board">
+            <div class="question-table-top">
+              <div class="timeleft-wrap">
+                <div class="timeleft">
+                  {{ hours }}:{{minutes}}:{{ seconds }}
+                </div>
+              </div>
+              <span class="question-title">Bấm vào câu muốn trả lời</span>
+              <div class="result-btn">
+                  <input type="button" (click)="submitTest()" class="btn orange" value="Nộp Bài">
+              </div>
+          </div>
+
+          <div class="question-table">
+            <div class="grid-container">
+              <div class="grid-item" *ngFor="let item of questions; let i = index" id="{{item.questionId}}" [class.active]="checkQuestionChecked(takenId, item.questionId) === true">
+                <a href="/quiz/test/{{item.quizId}}/{{takenId}}#{{item.questionId}}">{{ i + 1 }}</a>
+              </div>
+            </div>
+          </div>
+          </div>
+
+          </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>

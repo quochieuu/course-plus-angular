@@ -1,0 +1,16 @@
+.method-item img {
+  height: 35px;
+}
+.method-item label {
+  flex: 9;
+}
+.method-item input {
+  flex: 1;
+}
+.method-item {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e7e7e7;
+  margin-bottom: 15px;
+  border-radius: 8px;
+}
