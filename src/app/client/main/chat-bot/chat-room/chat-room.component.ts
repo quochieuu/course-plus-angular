@@ -56,9 +56,12 @@ export class ChatRoomComponent implements OnInit {
       .checkUserHasRoom()
       .subscribe((data: any) => {
         this.isHasRoom = data;
+        console.log("checkUserHasRoom");
         console.log(data);
         if(data == true) {
           this.getBotRoom();
+        } if(data == null) {
+          this.isHasRoom = false;
         }
       });
   }
